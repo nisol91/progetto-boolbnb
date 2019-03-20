@@ -14,7 +14,7 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        //vedi HomeController
     }
 
     /**
@@ -44,7 +44,16 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newApartment = new Apartment;
+        $newApartment->fill($data);
+
+
+
+        $newApartment->save();
+
+
+        return redirect()->route('apartment.index');
     }
 
     /**
@@ -55,7 +64,6 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
     }
 
     /**

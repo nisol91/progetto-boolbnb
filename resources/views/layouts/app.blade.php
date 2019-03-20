@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     {{-- geocomplete --}}
 <script src="http://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_KEY')}}&libraries=places"></script>
@@ -29,7 +30,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Torna alla pagina pubblica
                 </a>
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     Torna alla tua dashboard privata da proprietario
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
