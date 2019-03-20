@@ -44,11 +44,19 @@
                         {{-- <input type="submit" value="Upload Image" name="submit"> --}}
                     </div>
                     <div class="form-group">
-                        <label for="services">Servizi aggiuntivi</label>
-                        @foreach ($services as $item)
-                            {{var_dump($item)}}
-                            <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
-                        @endforeach
+                        <label for="services"> Optional </label>
+
+
+                        <div>
+                            @foreach ($services as $item)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    {{$item}}
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Create new apartment">

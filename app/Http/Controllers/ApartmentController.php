@@ -28,7 +28,9 @@ class ApartmentController extends Controller
         $services = [
             'doccia',
             'wifi',
-            'finestra'
+            'finestra',
+            'cristo',
+            'madonna'
         ];
 
         return view('create', compact('services'));
