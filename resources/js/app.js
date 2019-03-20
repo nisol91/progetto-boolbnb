@@ -10,9 +10,6 @@ require('geocomplete');
 
 
 $(document).ready(function () {
-    $("button.find").click(function () {
-        $(".indirizzo").trigger("geocode");
-    });
 
     $("#indirizzo").geocomplete({
         map: "#my_map",

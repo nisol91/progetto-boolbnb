@@ -37193,9 +37193,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! geocomplete */ "./node_modules/geocomplete/jquery.geocomplete.js");
 
 $(document).ready(function () {
-  $("button.find").click(function () {
-    $(".indirizzo").trigger("geocode");
-  });
   $("#indirizzo").geocomplete({
     map: "#my_map",
     details: ".details",
