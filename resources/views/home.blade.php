@@ -15,6 +15,8 @@
                     @endif
 
                     sei nella dashboard del proprietario
+                    <h1>i tuoi appartamenti</h1>
+                    <a href="{{ route('apartment.create')}}" class="btn">crea</a>
                 </div>
             </div>
         </div>
