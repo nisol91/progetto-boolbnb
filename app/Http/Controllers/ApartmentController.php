@@ -24,7 +24,14 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('create');
+
+        $services = [
+            'doccia',
+            'wifi',
+            'finestra'
+        ];
+
+        return view('create', compact('services'));
     }
 
     /**

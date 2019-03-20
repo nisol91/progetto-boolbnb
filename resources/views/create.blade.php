@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
     <div class="container">
@@ -41,6 +42,13 @@
                         <label for="image">Image</label>
                         <input type="file" name="image" id="">
                         {{-- <input type="submit" value="Upload Image" name="submit"> --}}
+                    </div>
+                    <div class="form-group">
+                        <label for="services">Servizi aggiuntivi</label>
+                        @foreach ($services as $item)
+                            {{var_dump($item)}}
+                            <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <input class="btn btn-primary" type="submit" value="Create new apartment">
