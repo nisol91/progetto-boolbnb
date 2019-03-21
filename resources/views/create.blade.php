@@ -51,10 +51,15 @@
                         <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
                         <div id="my_map"></div>
                         <div class="details">
-                        Latitude:     <div data-geo="lat" /></div>
-                        Longitude:    <div data-geo="lng" /></div>
-                        Address:      <div data-geo="formatted_address" /></div>
-                        Country Code: <div data-geo="country_short" /></div>
+                          <label for="lat">latitude</label>
+                          <input type="text" name="lat" class="form-control" id="latitude" placeholder="Enter the address">
+                          <label for="lng">longitude</label>
+                          <input type="text" name="lng" class="form-control" id="longitude" placeholder="Enter the address">
+
+                        Latitude:     <div data-geo="lat"></div>
+                        Longitude:    <div data-geo="lng"></div>
+                        Address:      <div data-geo="formatted_address"></div>
+                        Country Code: <div data-geo="country_short"></div>
                         </div>
                     </div>
                     <div class="form-group">

@@ -37198,7 +37198,13 @@ $(document).ready(function () {
     details: ".details",
     detailsAttribute: "data-geo"
   }).bind("geocode:result", function (event, result) {
-    console.log(result);
+    // console.log(result);
+    var latitude = result['geometry']['location'].lat();
+    var longitude = result['geometry']['location'].lng();
+    console.log(latitude);
+    console.log(longitude);
+    $("#latitude").val(latitude);
+    $("#longitude").val(longitude);
   });
 });
 

@@ -20,6 +20,8 @@
                        <h1>{{ $item->description }}</h1>
                         <h1>{{ $item->rooms_number }}</h1>
                         <h1>{{ $item->beds_number }}</h1>
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="">
+
 
                     @endforeach
                     <a href="{{ route('apartment.create')}}" class="btn">crea</a>

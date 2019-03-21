@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Apartment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -46,15 +47,21 @@ class ApartmentController extends Controller
     {
         $data = $request->all();
 
+        // dd($data);
 
         $validatedData = $request->validate([
             'description' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
-            'rooms_number' => ['required', 'integer', 'max:200'],
-            'beds_number' => ['required', 'integer', 'max:200'],
-            'baths_number' => ['required', 'integer', 'max:200'],
-            'surface' => ['required', 'integer', 'max:5000'],
+            'rooms_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'beds_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'baths_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'surface' => ['required', 'integer', 'min:0', 'max:5000'],
             'address' => ['required', 'string', 'max:255'],
+            'lat' => [],
+            'lng' => [],
         ]);
+
+        $image = Storage::disk('public')->put('apartaments_images', $data['image']);
+        $validatedData['image'] = $image;
 
 
         $newApartment = new Apartment;
