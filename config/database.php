@@ -14,6 +14,7 @@ return [
     */
 
     'default' => env('DB_CONNECTION', 'mysql'),
+    // 'unix_socket' => env('DB_SOCKET', ''),
 
     /*
     |--------------------------------------------------------------------------
