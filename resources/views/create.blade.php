@@ -1,7 +1,26 @@
 
 @extends('layouts.app')
 @section('content')
+{{-- errori --}}
     <div class="container">
+        @if ($errors->any())
+       <div class="alert alert-danger">
+           <ul>
+               @foreach ($errors->all() as $error)
+                   <li>{{ $error }}</li>
+               @endforeach
+           </ul>
+       </div>
+       @endif
+<!-- se ci sono campi vuoti -->
+       @if (!empty($message))
+       <div class="alert alert-success">
+           <ul>
+               <li>{{ $message }}</li>
+           </ul>
+       </div>
+       @endif
+{{-- ----- --}}
         <div class="row">
             <div class="col-12">
                 <h1>Add new Apartment</h1>
@@ -64,7 +83,6 @@
                 </form>
             </div>
         </div>
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     </div>
 @endsection
