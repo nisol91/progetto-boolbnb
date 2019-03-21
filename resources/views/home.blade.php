@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    sei nella dashboard del proprietario!!!
+                    sei nella dashboard del proprietario
                     <h1>i tuoi appartamenti</h1>
                     @foreach ($apartments as $item)
                        <h1>{{ $item->description }}</h1>
