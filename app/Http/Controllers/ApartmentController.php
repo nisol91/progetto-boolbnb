@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Service;
+use App\User;
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,16 +29,11 @@ class ApartmentController extends Controller
      */
     public function create()
     {
+        $services = Service::all();
+        $users = User::all();
 
-        $services = [
-            'doccia',
-            'wifi',
-            'finestra',
-            'cristo',
-            'madonna'
-        ];
 
-        return view('create', compact('services'));
+        return view('create', compact('services', 'users'));
     }
 
     /**
@@ -58,10 +57,19 @@ class ApartmentController extends Controller
             'address' => ['required', 'string', 'max:255'],
             'lat' => [],
             'lng' => [],
+            'services' => [],
+            'user_id'=>[],
         ]);
+
+
+        // dd($validatedData);
 
         $image = Storage::disk('public')->put('apartaments_images', $data['image']);
         $validatedData['image'] = $image;
+
+        $validatedData['user_id'] = \Auth::user()->id;
+        // anche se ho fatto la one to many, comunque lo user lo devo passare ai validatedData.
+        //Lo posso fare o cosi da backend(scelta consigliata), oppure con un input nascosto da frontend (scelta sconsigliata)
 
 
         $newApartment = new Apartment;
@@ -70,6 +78,8 @@ class ApartmentController extends Controller
 
 
         $newApartment->save();
+
+        $newApartment->services()->sync($validatedData['services']);
 
 
         return redirect()->route('home');
@@ -93,7 +103,10 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+
+
+        return view('edit', compact('apartment'), compact('services'));
     }
 
     /**

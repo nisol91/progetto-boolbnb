@@ -23,32 +23,32 @@
 {{-- ----- --}}
         <div class="row">
             <div class="col-12">
-                <h1>Add new Apartment</h1>
+                <h1>Edit Apartment</h1>
                 <form class="form-group" action="{{ route('apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <input type="text" name="description" class="form-control" id="" placeholder="Enter description">
+                    <input type="text" name="description" class="form-control" id="" placeholder="Enter description" value="{{$apartment->description}}">
                     </div>
                     <div class="form-group">
                         <label for="rooms_number">Number of rooms</label>
-                        <input type="number" name="rooms_number" class="form-control" id="" placeholder="Enter the number of rooms">
+                        <input type="number" name="rooms_number" class="form-control" id="" placeholder="Enter the number of rooms" value="{{$apartment->rooms_number}}">
                     </div>
                     <div class="form-group">
                         <label for="beds_number">Number of beds</label>
-                        <input type="number" name="beds_number" class="form-control" id="" placeholder="Enter the number of beds">
+                        <input type="number" name="beds_number" class="form-control" id="" placeholder="Enter the number of beds" value="{{$apartment->beds_number}}">
                     </div>
                     <div class="form-group">
                         <label for="baths_number">Number of baths</label>
-                        <input type="number" name="baths_number" class="form-control" id="" placeholder="Enter the number of baths">
+                        <input type="number" name="baths_number" class="form-control" id="" placeholder="Enter the number of baths" value="{{$apartment->baths_number}}">
                     </div>
                     <div class="form-group">
                         <label for="surface">Surface [square meters]</label>
-                        <input type="number" name="surface" class="form-control" id="" placeholder="Enter the surface">
+                        <input type="number" name="surface" class="form-control" id="" placeholder="Enter the surface" value="{{$apartment->surface}}">
                     </div>
                     <div class="form-group ">
                         <label for="address">Address</label>
-                        <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
+                        <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address" value="{{$apartment->address}}">
                         <div id="my_map"></div>
                         <div class="details">
                           <label for="lat">latitude</label>
@@ -67,10 +67,9 @@
                         <input type="file" name="image" id="">
                         {{-- <input type="submit" value="Upload Image" name="submit"> --}}
                     </div>
-                    {{-- {{dd($users)}} --}}
                             @foreach ($services as $item)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{$item->id}}" id="defaultCheck1" name="services[]">
+                                <input class="form-check-input" type="checkbox" value="{{$item->id}}" id="defaultCheck1" name="services[]" {{(!empty($item->service)) ? 'checked' : null }}>
                                 <label class="form-check-label" for="services[]">
                                     {{$item->service}}
                                 </label>

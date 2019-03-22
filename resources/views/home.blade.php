@@ -21,10 +21,12 @@
                         <h1>{{ $item->rooms_number }}</h1>
                         <h1>{{ $item->beds_number }}</h1>
                         <img src="{{ asset('storage/' . $item->image) }}" alt="">
+                        <a href="{{ route('apartment.edit', $item->id)}}" class="btn">modifica</a>
 
 
                     @endforeach
                     <a href="{{ route('apartment.create')}}" class="btn">crea</a>
+
                 </div>
             </div>
         </div>
