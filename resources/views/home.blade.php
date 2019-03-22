@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -16,20 +16,41 @@
 
                     sei nella dashboard del proprietario
                     <h1>i tuoi appartamenti</h1>
-                    @foreach ($apartments as $item)
-                       <h1>{{ $item->description }}</h1>
-                        <h1>{{ $item->rooms_number }}</h1>
-                        <h1>{{ $item->beds_number }}</h1>
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="">
-                        <a href="{{ route('apartment.edit', $item->id)}}" class="btn">modifica</a>
-
-
-                    @endforeach
-                    <a href="{{ route('apartment.create')}}" class="btn">crea</a>
-
+                    <a href="{{ route('apartment.create')}}" class="btn btn-secondary">crea nuovo</a>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Description</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($apartments as $item)
+                                <tr>
+                                    <td><h4>{{ $item->description }}</h4></td>
+                                    <td><h4>{{ $item->address }}</h4></td>
+                                    <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td>
+                                    <td><a href="{{ route('apartment.edit', $item->id)}}" class="btn btn-success">modifica</a></td>
+                                    <td><a href="{{ route('apartment.show', $item->id) }}" class="btn btn-primary">Show</a></td>
+                                    <td><form action="{{ route('apartment.destroy', $item->id)}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input class="btn btn-danger" type="submit" value="Delete">
+                                    </form></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+
+
+
+

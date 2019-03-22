@@ -93,6 +93,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        return view('show', compact('apartment'));
     }
 
     /**
@@ -136,7 +137,7 @@ class ApartmentController extends Controller
         $image = Storage::disk('public')->put('apartaments_images', $data['image']);
         $validatedData['image'] = $image;
 
-        $post->update($validatedData);
+        $apartment->update($validatedData);
 
         return redirect()->route('home');
 
@@ -150,6 +151,8 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+
+        return redirect()->route('home');
     }
 }
