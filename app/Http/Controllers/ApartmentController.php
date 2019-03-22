@@ -118,7 +118,28 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        //
+        $data = $request->all();
+
+        $validatedData = $request->validate([
+            'description' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
+            'rooms_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'beds_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'baths_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'surface' => ['required', 'integer', 'min:0', 'max:5000'],
+            'address' => ['required', 'string', 'max:255'],
+            'lat' => [],
+            'lng' => [],
+            'services' => [],
+            'user_id'=>[],
+        ]);
+
+        $image = Storage::disk('public')->put('apartaments_images', $data['image']);
+        $validatedData['image'] = $image;
+
+        $post->update($validatedData);
+
+        return redirect()->route('home');
+
     }
 
     /**
