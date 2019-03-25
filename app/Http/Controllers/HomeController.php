@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Apartment;
+use App\Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,7 +26,18 @@ class HomeController extends Controller
     public function index()
     {
         $apartments = Apartment::all();
+
         // dd($apartments);
         return view('home', compact('apartments'));
     }
+
+    public function index_public()
+    {
+        $apartments = Apartment::all();
+        $services = Service::all();
+        // dd($apartments);
+        return view('welcome', compact('apartments', 'services'));
+    }
+
+
 }
