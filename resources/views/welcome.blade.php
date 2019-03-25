@@ -6,24 +6,24 @@
     <div class="container">
     <div class="row">
         <div class="col-md-5">
-      <form class="" action="" method="post">
+      {{-- <form class="" action="" method="post">
         @csrf
-        @method('POST')
+        @method('POST') --}}
         <div class="search_wrapper">
             <div class="form-group">
                 <label for="address">Indirizzo</label>
-                <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
+                <input type="text" name="address" class="form-control" id="srcAddress" placeholder="Enter the address">
             </div>
 
               <div class="form-group">
                 <label for="">Numero di stanze</label>
-                <input type="text" name="" value="" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control">
+                <input type="text" name="" value="" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
               </div>
 
               <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" id="numPostiLetto">
                   <option selected>Seleziona numero posti letto</option>
-                  <option value="1">1</option>
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
@@ -33,7 +33,7 @@
               </div>
 
               <div class="form-group">
-                <select class="form-control">
+                <select class="form-control" id='raggio'>
                   <option selected>Seleziona il raggio di distanza</option>
                   <option value="10">10</option>
                     <option value="20">20</option>
@@ -46,15 +46,15 @@
 
               @foreach ($services as $service)
                 <div class="">
-                  <input type="checkbox" class="" id="customCheck1">
-                  <label class="" for="customCheck1">{{ $service->service}}</label>
+                  <input type="checkbox" class="chkServices" name='{{ $service->service }}' value='{{ $service->service }}'>
+                  <label>{{$service->service }}</label>
                 </div>
 
               @endforeach
 
-            <button class="btn btn-primary" type="submit">Cerca</button>
+            <button class="btn btn-primary" type="submit" id="cercaBtn">Cerca</button>
         </div>
-      </form>
+      {{-- </form> --}}
 
         </div>
     </div>

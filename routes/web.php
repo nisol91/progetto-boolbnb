@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index_public')->name('home.public');
+Route::get('/filtered', 'Api\FilterController@filter')->name('filtered');
 
 // Route::get('/', function () {
 //     return view('welcome');
