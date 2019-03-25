@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="img-wrapper">
     <img class="img-responsive" src="" alt="">
     <div class="container">
