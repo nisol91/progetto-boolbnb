@@ -6,31 +6,56 @@
     <div class="container">
     <div class="row">
         <div class="col-md-5">
-            <div class="search_wrapper">
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
-                </div>
-                <select class="custom-select">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="custom-select">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <label for="customRange2">Example range</label>
-                <input type="range" class="custom-range" min="0" max="5" id="customRange2">
-                <div class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                </div>
-                <button class="btn btn-primary" type="submit">Submit form</button>
+      <form class="" action="" method="post">
+        @csrf
+        @method('POST')
+        <div class="search_wrapper">
+            <div class="form-group">
+                <label for="address">Indirizzo</label>
+                <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
             </div>
-            
+
+              <div class="form-group">
+                <label for="">Numero di stanze</label>
+                <input type="text" name="" value="" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <select class="form-control">
+                  <option selected>Seleziona numero posti letto</option>
+                  <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+
+              </div>
+
+              <div class="form-group">
+                <select class="form-control">
+                  <option selected>Seleziona il raggio di distanza</option>
+                  <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                  </select>
+
+              </div>
+
+              @foreach ($services as $service)
+                <div class="">
+                  <input type="checkbox" class="" id="customCheck1">
+                  <label class="" for="customCheck1">{{ $service->service}}</label>
+                </div>
+
+              @endforeach
+
+            <button class="btn btn-primary" type="submit">Cerca</button>
+        </div>
+      </form>
+
         </div>
     </div>
 </div>
@@ -184,5 +209,5 @@
   </div>
 </div>
 </footer>
-       
+
 @endsection
