@@ -18,11 +18,41 @@ $(document).ready(function() {
         // console.log(result);
         var latitude = result['geometry']['location'].lat();
         var longitude = result['geometry']['location'].lng();
-        console.log(latitude);
-        console.log(longitude);
+        // console.log(latitude);
+        // console.log(longitude);
 
         $("#latitude").val(latitude);
         $("#longitude").val(longitude);
+
+    });
+
+    $('#cercaBtn').on('click',function(){
+      var indirizzo = $('#srcAddress').val();
+      var numStanze = $('#numStanze').val();
+      var numPostiLetto = $('#numPostiLetto').val();
+      var raggio = $('#raggio').val();
+      var services = "";
+
+      $(".chkServices").each(function () {
+        var ischecked = $(this).is(":checked");
+        if (ischecked) {
+          services += $(this).val() + " ";
+        }
+      });
+
+      // console.log(indirizzo + ' ' + numStanze + ' ' + numPostiLetto + ' ' + raggio + ' ' + services);
+
+      $.ajax({
+             url: '',
+             method: 'GET',
+             success: function(data){
+
+             },
+             error: function(){
+               alert('si è verificato un errore');
+             }
+           });
+
 
     });
 

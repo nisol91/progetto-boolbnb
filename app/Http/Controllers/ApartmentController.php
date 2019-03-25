@@ -153,6 +153,6 @@ class ApartmentController extends Controller
     {
         $apartment->delete();
 
-        return redirect()->route('home');
+        return redirect()->route('home') ->with('deleted','Apartment deleted');
     }
 }
