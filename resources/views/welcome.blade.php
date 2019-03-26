@@ -6,9 +6,9 @@
     <div class="container">
     <div class="row">
         <div class="col-md-5">
-      {{-- <form class="" action="" method="post">
+        <form class="" action="{{ route('filtered') }}">
         @csrf
-        @method('POST') --}}
+        
         <div class="search_wrapper">
             <div class="form-group">
                 <label for="address">Indirizzo</label>
@@ -17,11 +17,11 @@
 
               <div class="form-group">
                 <label for="">Numero di stanze</label>
-                <input type="text" name="" value="" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
+                <input type="text" name="rooms_number" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
               </div>
 
               <div class="form-group">
-                <select class="form-control" id="numPostiLetto">
+                <select class="form-control" name="beds_number"id="numPostiLetto">
                   <option selected>Seleziona numero posti letto</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -33,7 +33,7 @@
               </div>
 
               <div class="form-group">
-                <select class="form-control" id='raggio'>
+                <select class="form-control" name="range" id='raggio'>
                   <option selected>Seleziona il raggio di distanza</option>
                   <option value="10">10</option>
                     <option value="20">20</option>

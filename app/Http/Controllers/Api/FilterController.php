@@ -8,10 +8,11 @@ use App\Apartment;
 
 class FilterController extends Controller
 {
-    public function filter(){
+    public function filter() {
 
-      $apartments = Apartment::all();
-      return response()->json($apartments);
-      
+    
+    return view('filtered');
+ 
     }
+    
 }

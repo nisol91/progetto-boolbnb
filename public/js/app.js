@@ -37198,7 +37198,6 @@ $(document).ready(function () {
     details: ".details",
     detailsAttribute: "data-geo"
   }).bind("geocode:result", function (event, result) {
-    // console.log(result);
     var latitude = result['geometry']['location'].lat();
     var longitude = result['geometry']['location'].lng(); // console.log(latitude);
     // console.log(longitude);
@@ -37218,14 +37217,29 @@ $(document).ready(function () {
       if (ischecked) {
         services += $(this).val() + " ";
       }
-    }); // console.log(indirizzo + ' ' + numStanze + ' ' + numPostiLetto + ' ' + raggio + ' ' + services);
+    });
+    var postData = {
+      indirizzo: indirizzo,
+      rooms_number: numStanze,
+      beds_number: numPostiLetto,
+      range: raggio,
+      services: services
+    }; // console.log(postData);
 
+    var dataString = JSON.stringify(postData);
+    console.log(dataString);
     $.ajax({
-      url: '',
-      method: 'GET',
-      success: function success(data) {},
-      error: function error() {
-        alert('si è verificato un errore');
+      type: "POST",
+      url: "welcome.php",
+      data: {
+        myData: dataString
+      },
+      success: function success(data) {
+        var sendData = data.success;
+        console.log(sendData);
+      },
+      error: function error(e) {
+        console.log('KOKOKOKOKO');
       }
     });
   });
@@ -37309,8 +37323,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

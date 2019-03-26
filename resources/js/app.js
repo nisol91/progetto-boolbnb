@@ -8,14 +8,14 @@ require('./bootstrap');
 require('geocomplete');
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     $("#indirizzo").geocomplete({
         map: "#my_map",
         details: ".details",
         detailsAttribute: "data-geo"
-    }).bind("geocode:result", function(event, result) {
-        // console.log(result);
+    }).bind("geocode:result", function (event, result) {
+
         var latitude = result['geometry']['location'].lat();
         var longitude = result['geometry']['location'].lng();
         // console.log(latitude);
@@ -26,32 +26,53 @@ $(document).ready(function() {
 
     });
 
-    $('#cercaBtn').on('click',function(){
-      var indirizzo = $('#srcAddress').val();
-      var numStanze = $('#numStanze').val();
-      var numPostiLetto = $('#numPostiLetto').val();
-      var raggio = $('#raggio').val();
-      var services = "";
+    $('#cercaBtn').on('click', function () {
+        var indirizzo = $('#srcAddress').val();
+        var numStanze = $('#numStanze').val();
+        var numPostiLetto = $('#numPostiLetto').val();
+        var raggio = $('#raggio').val();
+        var services = "";
 
-      $(".chkServices").each(function () {
-        var ischecked = $(this).is(":checked");
-        if (ischecked) {
-          services += $(this).val() + " ";
-        }
-      });
+        $(".chkServices").each(function () {
+            var ischecked = $(this).is(":checked");
+            if (ischecked) {
+                services += $(this).val() + " ";
+            }
+        });
 
-      // console.log(indirizzo + ' ' + numStanze + ' ' + numPostiLetto + ' ' + raggio + ' ' + services);
 
-      $.ajax({
-             url: '',
-             method: 'GET',
-             success: function(data){
+        var postData = {
 
-             },
-             error: function(){
-               alert('si è verificato un errore');
-             }
-           });
+            indirizzo: indirizzo,
+            rooms_number: numStanze,
+            beds_number: numPostiLetto,
+            range: raggio,
+            services: services
+
+        };
+
+        // console.log(postData);
+
+        var dataString = JSON.stringify(postData);
+
+        console.log(dataString);
+
+
+        $.ajax({
+            type: "POST",
+            url: "welcome.php",
+            data: {
+                myData: dataString
+            },
+            success: function (data) {
+
+                console.log(data);
+
+            },
+            error: function (e) {
+                console.log('KOKOKOKOKO');
+            }
+        });
 
 
     });
