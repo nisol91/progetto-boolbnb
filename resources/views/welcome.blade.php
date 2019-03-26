@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong>{{ $message }}</strong>
+    </div>
+  @endif
+
+
 <div class="img-wrapper">
     <img class="img-responsive" src="" alt="">
     <div class="container">
@@ -8,7 +16,7 @@
         <div class="col-md-5">
         <form class="" action="{{ route('filtered') }}">
         @csrf
-        
+
         <div class="search_wrapper">
             <div class="form-group">
                 <label for="address">Indirizzo</label>
@@ -72,80 +80,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 1</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
+  @foreach ($apartments as $item)
+      <div class="col-md-3">
+          <div class="card">
+              <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+              <div class="card-body">
+              <h5 class="card-title"> {{ $item->description }} </h5>
+              <p class="card-text">{{ $item->address }}</p>
+              <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 2</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 3</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 4</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class=row>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 5</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 6</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 7</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img src="https://placeimg.com/250/150/arch" class="card-img-top img_section" alt="...">
-        <div class="card-body">
-        <h5 class="card-title">Appartamento 8</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
+      @endforeach
     </div>
   </div>
 </div>

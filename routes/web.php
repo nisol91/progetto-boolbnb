@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'WelcomeController@index_public')->name('home.public');
+Route::get('/details/{id}', 'WelcomeController@details_public')->name('details.public');
+
 Route::get('/filtered', 'Api\FilterController@filter')->name('filtered');
 
 
@@ -20,3 +22,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::resource('/apartment', 'ApartmentController')->middleware('auth');
+Route::resource('/message', 'MessageController');
+

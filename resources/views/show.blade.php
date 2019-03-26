@@ -10,6 +10,7 @@
                 <h5>{{$apartment->baths_number}}</h5>
                 <h5>{{$apartment->surface}}</h5>
                 <h5>{{$apartment->address}}</h5>
+                <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
             </div>
         </div>
