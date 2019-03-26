@@ -32,17 +32,42 @@ class HomeController extends Controller
         return view('home', compact('apartments'));
     }
 
-        public function ajaxRequestPost()
+        public function ajaxRequestPost(Request $request)
     {
         $input = request()->all();
 
         $apartments = Apartment::all();
+        $services = Service::all();
 
 
-        $result = $apartments;
-        // ->where('rooms_number', 'rooms_number')
+        if (!empty($input['address'])) {
+            $address = $apartments->where('address', $input['address']);
+            $result[] = $address;
+        }
 
-        return response()->json(['success'=>$result]);
+        if (!empty($input['rooms_number'])) {
+            $rooms_number = $apartments->where('rooms_number', $input['rooms_number']);
+            $result[] = $rooms_number;
+        }
+
+        if (!empty($input['beds_number'])) {
+            $beds_number = $apartments->where('beds_number', $input['beds_number']);
+            $result[] = $beds_number;
+        }
+
+        if (!empty($input['services'])) {
+            $services[] = $apartment->where('services', $input['services']);
+            $result[] = $services;
+
+        }
+
+
+
+        return response()->json(
+            ['success'=>$result,
+             'input'=>$input,
+            ]
+        );
     }
 
 

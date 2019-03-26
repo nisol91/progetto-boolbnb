@@ -10,8 +10,26 @@
                 <h5>{{$apartment->baths_number}}</h5>
                 <h5>{{$apartment->surface}}</h5>
                 <h5>{{$apartment->address}}</h5>
+                <h5>Services:</h5>
+                @foreach ($apartment->services as $item)
+                    <h5>{{$item->service}}</h5>
+                @endforeach
                 <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-12">
+
+                @foreach ($messages as $item)
+                <div class="messaggio">
+                    <h1>Messaggio</h1>
+                    <h6> {{ $item->body }} </h6>
+                    <h5> from: {{ $item->email }} </h5>
+
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

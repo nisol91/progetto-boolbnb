@@ -62,7 +62,11 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        // $messages = Message::find($id);
+
+        // $messages = $request->where('id', $apartment->id);
+
+        // return view('show', compact('messages'));
     }
 
     /**

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Apartment;
 use App\Service;
 use App\User;
+use App\Message;
+
 
 
 use Illuminate\Http\Request;
@@ -93,7 +95,11 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        return view('show', compact('apartment'));
+        $request = Message::all();
+
+        $messages = $request->where('apartment_id', $apartment['id']);
+
+        return view('show', compact('apartment', 'messages'));
     }
 
     /**
@@ -132,6 +138,7 @@ class ApartmentController extends Controller
             'lng' => [],
             'services' => [],
             'user_id'=>[],
+            'visibility'=>['integer', 'min:0', 'max:1'],
         ]);
 
         $image = Storage::disk('public')->put('apartaments_images', $data['image']);

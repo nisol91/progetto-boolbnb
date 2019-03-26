@@ -11,6 +11,32 @@
                 <h5>Numero bagni:{{$apartment->baths_number}}</h5>
                 <h5>Superficie:{{$apartment->surface}}</h5>
                 <h5>Indirizzo: {{$apartment->address}}</h5>
+
+
+               <div class="form-group hidden">
+                    <label for="address">Indirizzo</label>
+                    <input type="text" name="address" class="form-control" id="detailsAddress" placeholder="Enter the address" value"">
+                </div>
+
+                <div id="my_map_details" style="width: 100%; height: 200px;"></div>
+
+                <div class="coords hidden">
+
+                    <div class="lat">
+                        <h2>Latitude: </h2>
+                       <h4 id="det_lat">{{ $apartment->lat }}</h4>
+                    </div>
+                    <div class="lng">
+                        <h2>Longitude: </h2>
+                       <h4 id="det_lng">{{ $apartment->lng }}</h4>
+                    </div>
+                </div>
+
+
+                <h5>Services:</h5>
+                 @foreach ($apartment->services as $item)
+                    <h5>{{$item->service}}</h5>
+                @endforeach
                 <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
             </div>

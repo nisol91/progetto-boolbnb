@@ -37219,14 +37219,33 @@ $(document).ready(function () {
     $("#latitude_search").val(latitude_search);
     $("#longitude_search").val(longitude_search);
   });
+  var latitudines = $('#det_lat').text();
+  var longitudines = $('#det_lng').text();
+  console.log(latitudines);
+  console.log(longitudines); //terzo geocomplete per la detail page pubblica
+
+  $("#detailsAddress").geocomplete({
+    map: "#my_map_details",
+    location: [latitudines, longitudines],
+    details: ".details_details",
+    detailsAttribute: "data-geo"
+  }).bind("geocode:result", function (event, result) {
+    var latitude_details = result['geometry']['location'].lat();
+    var longitude_details = result['geometry']['location'].lng(); // console.log(latitude);
+    // console.log(longitude);
+
+    $("#latitude_details").val(latitude_details);
+    $("#longitude_details").val(longitude_details);
+  });
   $('#cercaBtn').on('click', function () {
-    var indirizzo = $('#srcAddress').val();
+    var address = $('#srcAddress').val();
     var lat = $('#latitude_search').val();
     var lng = $('#longitude_search').val();
-    var numStanze = $('#numStanze').val();
-    var numPostiLetto = $('#numPostiLetto').val();
+    var rooms_number = $('#numStanze').val();
+    var beds_number = $('#numPostiLetto').val();
     var raggio = $('#raggio').val();
-    var services = "";
+    var services = $('.servizi').val();
+    ;
     $(".chkServices").each(function () {
       var ischecked = $(this).is(":checked");
 
@@ -37253,21 +37272,24 @@ $(document).ready(function () {
       type: 'POST',
       url: '/ajaxRequest',
       data: {
-        indirizzo: indirizzo,
+        address: address,
         lat: lat,
         lng: lng,
-        rooms_number: numStanze,
-        beds_number: numPostiLetto,
-        range: raggio,
+        rooms_number: rooms_number,
+        beds_number: beds_number,
+        raggio: raggio,
         services: services
       },
       success: function success(data) {
-        console.log(data.success);
+        console.log(data);
       },
       error: function error() {
         console.log('KOKOKOKOKO');
       }
     });
+  });
+  $('#hidden_apartment').click(function () {
+    alert('ok');
   });
 });
 

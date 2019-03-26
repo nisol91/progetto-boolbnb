@@ -26,9 +26,9 @@
                 <div id="my_map_search" style="width: 100%; height: 200px;"></div>
                 <div class="details_search">
                     <label for="lat">latitude</label>
-                    <input type="text" name="lat" class="form-control" id="latitude_search" placeholder="lat">
+                    <input type="number" name="lat" class="form-control" id="latitude_search" placeholder="lat">
                     <label for="lng">longitude</label>
-                    <input type="text" name="lng" class="form-control" id="longitude_search" placeholder="long">
+                    <input type="number" name="lng" class="form-control" id="longitude_search" placeholder="long">
 
                 {{-- Latitude:     <div data-geo="lat"></div>
                 Longitude:    <div data-geo="lng"></div>
@@ -38,7 +38,7 @@
 {{-- --- --}}
                 <div class="form-group">
                     <label for="">Numero di stanze</label>
-                    <input type="text" name="rooms_number" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
+                    <input type="number" name="rooms_number" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
                 </div>
 
                 <div class="form-group">
@@ -66,8 +66,8 @@
                 </div>
 
                 @foreach ($services as $service)
-                    <div class="">
-                    <input type="checkbox" class="chkServices" name='{{ $service->service }}' value='{{ $service->service }}'>
+                    <div class="servizi">
+                    <input type="checkbox" class="chkServices" name='{{ $service->service }}' value='{{ $service->service }}' id="servizi">
                     <label>{{$service->service }}</label>
                     </div>
 
@@ -93,9 +93,10 @@
   </div>
   <div class="row">
   @foreach ($apartments as $item)
-      <div class="col-md-3">
+      <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
           <div class="card">
               <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+              <img src="{{ asset('storage/' . $item->image) }}" alt="">
               <div class="card-body">
               <h5 class="card-title"> {{ $item->description }} </h5>
               <p class="card-text">{{ $item->address }}</p>
