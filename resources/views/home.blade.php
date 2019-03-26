@@ -15,7 +15,6 @@
                         </div>
                     @endif
 
-                    sei nella dashboard del proprietario
                     <h1>i tuoi appartamenti</h1>
                     <a href="{{ route('apartment.create')}}" class="btn btn-secondary">crea nuovo</a>
                     <table class="table">
@@ -32,7 +31,8 @@
                                 <tr>
                                     <td><h4>{{ $item->description }}</h4></td>
                                     <td><h4>{{ $item->address }}</h4></td>
-                                    <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td>
+                                    <td><img src="{{ $item->image }}" alt=""></td>
+                                    {{-- <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td> --}}
                                     <td><a href="{{ route('apartment.edit', $item->id)}}" class="btn btn-success">modifica</a></td>
                                     <td><a href="{{ route('apartment.show', $item->id) }}" class="btn btn-primary">Show</a></td>
                                     <td><form action="{{ route('apartment.destroy', $item->id)}}" method="post">
