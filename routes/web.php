@@ -15,6 +15,8 @@
 Route::get('/', 'WelcomeController@index_public')->name('home.public');
 Route::get('/details/{id}', 'WelcomeController@details_public')->name('details.public');
 
+//filtro ricerca con ajax
+Route::post('ajaxRequest', 'HomeController@ajaxRequestPost');
 Route::get('/filtered', 'Api\FilterController@filter')->name('filtered');
 
 

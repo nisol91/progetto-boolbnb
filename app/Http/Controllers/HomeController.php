@@ -26,10 +26,25 @@ class HomeController extends Controller
     public function index()
     {
         // ogni utente vede solo i suoi appartamenti
-        $chiamata = Apartment::all(); 
+        $chiamata = Apartment::all();
         $apartments = $chiamata->where('user_id', \Auth::user()->id);
 
         return view('home', compact('apartments'));
     }
+
+        public function ajaxRequestPost()
+    {
+        $input = request()->all();
+
+        $apartments = Apartment::all();
+
+
+        $result = $apartments;
+        // ->where('rooms_number', 'rooms_number')
+
+        return response()->json(['success'=>$result]);
+    }
+
+
 
 }
