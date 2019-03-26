@@ -20,7 +20,10 @@ class MessageSeeder extends Seeder
             $newMessage->name = $faker->firstName;
             $newMessage->email = $faker->email;
             $newMessage->body = $faker->text;
-            
+
+            $newMessage->apartment_id = $faker->numberBetween($min = 1, $max = 10);
+
+
             $newMessage->save();
 
         }

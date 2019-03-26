@@ -10683,7 +10683,7 @@ a.text-dark:focus {
 
 .img-wrapper {
   width: 100vw;
-  height: 500px;
+  height: auto;
   border: 1px solid black;
 }
 
@@ -10732,5 +10732,14 @@ a.text-dark:focus {
 .footer_social li {
   color: lightgrey;
   cursor: pointer;
+}
+
+.card {
+  height: 350px !important;
+  margin: 5px;
+}
+
+.hidden {
+  display: none;
 }
 

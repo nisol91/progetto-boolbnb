@@ -35,7 +35,23 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'body' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
+            'apartment_id' => [],
+        ]);
+        // dd($validatedData);
+
+        $newMessage = new Message;
+        $newMessage->fill($validatedData);
+
+
+        $newMessage->save();
+
+
+        return redirect()->route('home.public')->with('success','Message sent!');
     }
 
     /**
