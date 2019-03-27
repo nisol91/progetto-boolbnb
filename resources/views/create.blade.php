@@ -31,6 +31,10 @@
                         <input type="text" name="description" class="form-control" id="" placeholder="Enter description">
                     </div>
                     <div class="form-group">
+                        <label for="price">Price in euros</label>
+                        <input type="number" name="price" class="form-control" id="" placeholder="Enter the price">
+                    </div>
+                    <div class="form-group">
                         <label for="rooms_number">Number of rooms</label>
                         <input type="number" name="rooms_number" class="form-control" id="" placeholder="Enter the number of rooms">
                     </div>

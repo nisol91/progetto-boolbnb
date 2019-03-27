@@ -11,6 +11,8 @@
                 <h5>Numero bagni:{{$apartment->baths_number}}</h5>
                 <h5>Superficie:{{$apartment->surface}}</h5>
                 <h5>Indirizzo: {{$apartment->address}}</h5>
+                <h5>Prezzo per notte:{{$apartment->price}}</h5>
+
 
 
                <div class="form-group hidden">
@@ -37,8 +39,13 @@
                  @foreach ($apartment->services as $item)
                     <h5>{{$item->service}}</h5>
                 @endforeach
-                <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
-                <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                {{-- <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt=""> --}}
+                    @if (strpos( $apartment->image, 'https') !== false)
+                        <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
+                    @else
+                        <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                    @endif
             </div>
         </div>
         <div class="row">

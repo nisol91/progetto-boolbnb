@@ -10,12 +10,20 @@
                 <h5>{{$apartment->baths_number}}</h5>
                 <h5>{{$apartment->surface}}</h5>
                 <h5>{{$apartment->address}}</h5>
+                <h5>Prezzo per notte:{{$apartment->price}}</h5>
+
+
                 <h5>Services:</h5>
                 @foreach ($apartment->services as $item)
                     <h5>{{$item->service}}</h5>
                 @endforeach
+                {{-- <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
+                <img src="{{ asset('storage/' . $apartment->image) }}" alt=""> --}}
+                @if (strpos( $apartment->image, 'https') !== false)
                 <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
+              @else
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+              @endif
             </div>
         </div>
         <div class="row">
