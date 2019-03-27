@@ -25,4 +25,3 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::resource('/apartment', 'ApartmentController')->middleware('auth');
 Route::resource('/message', 'MessageController');
-

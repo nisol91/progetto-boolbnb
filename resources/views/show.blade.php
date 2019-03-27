@@ -10,6 +10,9 @@
                 <h5>{{$apartment->baths_number}}</h5>
                 <h5>{{$apartment->surface}}</h5>
                 <h5>{{$apartment->address}}</h5>
+                <h5>Prezzo per notte:{{$apartment->price}}</h5>
+
+
                 <h5>Services:</h5>
                 @foreach ($apartment->services as $item)
                     <h5>{{$item->service}}</h5>

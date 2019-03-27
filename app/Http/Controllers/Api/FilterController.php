@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers\Api;
@@ -9,11 +8,6 @@ use App\Apartment;
 
 class FilterController extends Controller
 {
-    public function filter() {
-
-
-    return view('filtered');
-
-    }
+    
 
 }

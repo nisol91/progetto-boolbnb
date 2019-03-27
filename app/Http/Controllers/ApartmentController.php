@@ -53,6 +53,8 @@ class ApartmentController extends Controller
         $validatedData = $request->validate([
             'description' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
             'rooms_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'price' => ['required', 'integer', 'min:0', 'max:2000'],
+
             'beds_number' => ['required', 'integer', 'min:0', 'max:200'],
             'baths_number' => ['required', 'integer', 'min:0', 'max:200'],
             'surface' => ['required', 'integer', 'min:0', 'max:5000'],
@@ -130,6 +132,8 @@ class ApartmentController extends Controller
         $validatedData = $request->validate([
             'description' => ['required', 'string', 'max:255', 'regex:/^[a-zA-Z ]+$/'],
             'rooms_number' => ['required', 'integer', 'min:0', 'max:200'],
+            'price' => ['required', 'integer', 'min:0', 'max:2000'],
+
             'beds_number' => ['required', 'integer', 'min:0', 'max:200'],
             'baths_number' => ['required', 'integer', 'min:0', 'max:200'],
             'surface' => ['required', 'integer', 'min:0', 'max:5000'],

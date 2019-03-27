@@ -11,6 +11,8 @@
                 <h5>Numero bagni:{{$apartment->baths_number}}</h5>
                 <h5>Superficie:{{$apartment->surface}}</h5>
                 <h5>Indirizzo: {{$apartment->address}}</h5>
+                <h5>Prezzo per notte:{{$apartment->price}}</h5>
+
 
 
                <div class="form-group hidden">

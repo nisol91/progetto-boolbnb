@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     {{-- geocomplete --}}
-<script src="http://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_KEY')}}&libraries=places"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_KEY')}}&libraries=places"></script>
 
     {{-- <script src="jquery.geocomplete.js"></script> --}}
     <!-- Fonts -->
@@ -25,6 +25,11 @@
 
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    {{-- Braintree --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
 
 </head>
 <body>
