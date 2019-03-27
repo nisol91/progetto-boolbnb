@@ -29,6 +29,8 @@ class ApartmentSeeder extends Seeder
             $newApartment->lat = $faker->latitude($min = -90, $max = 90) ;
             $newApartment->lng = $faker->longitude($min = -180, $max = 180);
             $newApartment->image = $faker->imageUrl($width = 640, $height = 480, 'nature');
+            $newApartment->price = $faker->numberBetween($min = 20, $max = 100);
+
 
             $newApartment->user_id = $faker->numberBetween($min = 1, $max = 10);
 
