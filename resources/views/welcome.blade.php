@@ -25,10 +25,10 @@
 {{-- //geocomplete --}}
                 <div id="my_map_search" style="width: 100%; height: 200px;"></div>
                 <div class="details_search">
-                    <label for="lat">latitude</label>
-                    <input type="number" name="lat" class="form-control" id="latitude_search" placeholder="lat">
-                    <label for="lng">longitude</label>
-                    <input type="number" name="lng" class="form-control" id="longitude_search" placeholder="long">
+                    <label class="hidden" for="lat">latitude</label>
+                    <input type="number" name="lat" class="form-control hidden" id="latitude_search" placeholder="lat">
+                    <label class="hidden" for="lng">longitude</label>
+                    <input type="number" name="lng" class="form-control hidden" id="longitude_search" placeholder="long">
 
                 {{-- Latitude:     <div data-geo="lat"></div>
                 Longitude:    <div data-geo="lng"></div>

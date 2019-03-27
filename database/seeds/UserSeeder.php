@@ -24,11 +24,9 @@ class UserSeeder extends Seeder
             $newUser->date_of_birth = $faker->date($format = 'Y-m-d', $max = 'now');
             $newUser->email = $faker->email;
             $newUser->password = $faker->password;
-            
+
             $newUser->save();
 
         }
     }
 }
-
-
