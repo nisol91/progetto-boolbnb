@@ -95,11 +95,16 @@
   @foreach ($apartments as $item)
       <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
           <div class="card">
-              <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
-              <img src="{{ asset('storage/' . $item->image) }}" alt="">
+              @if (strpos( $item->image, 'https') !== false)
+                <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+              @else
+                <img src="{{ asset('storage/' . $item->image) }}" alt="">
+              @endif
               <div class="card-body">
               <h5 class="card-title"> {{ $item->description }} </h5>
               <p class="card-text">{{ $item->address }}</p>
+              <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
+
               <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
               </div>
           </div>
