@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     {{-- geocomplete --}}
-<script src="http://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_KEY')}}&libraries=places"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key={{ env('API_GOOGLE_KEY')}}&libraries=places"></script>
 
     {{-- <script src="jquery.geocomplete.js"></script> --}}
     <!-- Fonts -->
