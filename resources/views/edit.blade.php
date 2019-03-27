@@ -27,6 +27,22 @@
                 <form class="form-group" action="{{ route('apartment.update', $apartment->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="defaultCheck1" name="visibility">
+                        <label class="form-check-label" for="visibility">
+                            Hidden
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="0" id="defaultCheck1" name="visibility">
+                        <label class="form-check-label" for="visibility">
+                            Show
+                        </label>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="visibility">Hidden</label>
+                    <input type="text" name="visibility" class="form-control" id="" placeholder="Enter description" value="{{$apartment->visibiity}}">
+                    </div> --}}
                     <div class="form-group">
                         <label for="description">Description</label>
                     <input type="text" name="description" class="form-control" id="" placeholder="Enter description" value="{{$apartment->description}}">

@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers\Api;
@@ -10,9 +11,9 @@ class FilterController extends Controller
 {
     public function filter() {
 
-    
+
     return view('filtered');
- 
+
     }
-    
+
 }

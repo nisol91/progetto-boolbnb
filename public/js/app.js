@@ -37193,6 +37193,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! geocomplete */ "./node_modules/geocomplete/jquery.geocomplete.js");
 
 $(document).ready(function () {
+  //primo geocomplete per create/edit
   $("#indirizzo").geocomplete({
     map: "#my_map",
     details: ".details",
@@ -37204,44 +37205,91 @@ $(document).ready(function () {
 
     $("#latitude").val(latitude);
     $("#longitude").val(longitude);
+  }); //secondo geocomplete per il form di ricerca
+
+  $("#srcAddress").geocomplete({
+    map: "#my_map_search",
+    details: ".details_search",
+    detailsAttribute: "data-geo"
+  }).bind("geocode:result", function (event, result) {
+    var latitude_search = result['geometry']['location'].lat();
+    var longitude_search = result['geometry']['location'].lng(); // console.log(latitude);
+    // console.log(longitude);
+
+    $("#latitude_search").val(latitude_search);
+    $("#longitude_search").val(longitude_search);
+  });
+  var latitudines = $('#det_lat').text();
+  var longitudines = $('#det_lng').text();
+  console.log(latitudines);
+  console.log(longitudines); //terzo geocomplete per la detail page pubblica
+
+  $("#detailsAddress").geocomplete({
+    map: "#my_map_details",
+    location: [latitudines, longitudines],
+    details: ".details_details",
+    detailsAttribute: "data-geo"
+  }).bind("geocode:result", function (event, result) {
+    var latitude_details = result['geometry']['location'].lat();
+    var longitude_details = result['geometry']['location'].lng(); // console.log(latitude);
+    // console.log(longitude);
+
+    $("#latitude_details").val(latitude_details);
+    $("#longitude_details").val(longitude_details);
   });
   $('#cercaBtn').on('click', function () {
-    var indirizzo = $('#srcAddress').val();
-    var numStanze = $('#numStanze').val();
-    var numPostiLetto = $('#numPostiLetto').val();
+    var address = $('#srcAddress').val();
+    var lat = $('#latitude_search').val();
+    var lng = $('#longitude_search').val();
+    var rooms_number = $('#numStanze').val();
+    var beds_number = $('#numPostiLetto').val();
     var raggio = $('#raggio').val();
-    var services = "";
+    var services = $('.servizi').val();
+    ;
     $(".chkServices").each(function () {
       var ischecked = $(this).is(":checked");
 
       if (ischecked) {
         services += $(this).val() + " ";
       }
-    });
-    var postData = {
-      indirizzo: indirizzo,
-      rooms_number: numStanze,
-      beds_number: numPostiLetto,
-      range: raggio,
-      services: services
-    }; // console.log(postData);
+    }); // var postData = {
+    //     indirizzo: indirizzo,
+    //     rooms_number: numStanze,
+    //     beds_number: numPostiLetto,
+    //     range: raggio,
+    //     services: services
+    // };
+    // // console.log(postData);
+    // var dataString = JSON.stringify(postData);
+    // console.log(dataString);
 
-    var dataString = JSON.stringify(postData);
-    console.log(dataString);
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
     $.ajax({
-      type: "POST",
-      url: "welcome.php",
+      type: 'POST',
+      url: '/ajaxRequest',
       data: {
-        myData: dataString
+        address: address,
+        lat: lat,
+        lng: lng,
+        rooms_number: rooms_number,
+        beds_number: beds_number,
+        raggio: raggio,
+        services: services
       },
       success: function success(data) {
-        var sendData = data.success;
-        console.log(sendData);
+        console.log(data);
       },
-      error: function error(e) {
+      error: function error() {
         console.log('KOKOKOKOKO');
       }
     });
+  });
+  $('#hidden_apartment').click(function () {
+    alert('ok');
   });
 });
 
@@ -37323,8 +37371,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/nicola/nicola_sites/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nicola/nicola_sites/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

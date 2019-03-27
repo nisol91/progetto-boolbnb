@@ -26,10 +26,50 @@ class HomeController extends Controller
     public function index()
     {
         // ogni utente vede solo i suoi appartamenti
-        $chiamata = Apartment::all(); 
+        $chiamata = Apartment::all();
         $apartments = $chiamata->where('user_id', \Auth::user()->id);
 
         return view('home', compact('apartments'));
     }
+
+        public function ajaxRequestPost(Request $request)
+    {
+        $input = request()->all();
+
+        $apartments = Apartment::all();
+        $services = Service::all();
+
+
+        if (!empty($input['address'])) {
+            $address = $apartments->where('address', $input['address']);
+            $result[] = $address;
+        }
+
+        if (!empty($input['rooms_number'])) {
+            $rooms_number = $apartments->where('rooms_number', $input['rooms_number']);
+            $result[] = $rooms_number;
+        }
+
+        if (!empty($input['beds_number'])) {
+            $beds_number = $apartments->where('beds_number', $input['beds_number']);
+            $result[] = $beds_number;
+        }
+
+        if (!empty($input['services'])) {
+            $services[] = $apartment->where('services', $input['services']);
+            $result[] = $services;
+
+        }
+
+
+
+        return response()->json(
+            ['success'=>$result,
+             'input'=>$input,
+            ]
+        );
+    }
+
+
 
 }
