@@ -96,7 +96,7 @@
       <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
           <div class="card">
               <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
-              <img src="{{ asset('storage/' . $item->image) }}" alt="">
+              {{-- <img src="{{ asset('storage/' . $item->image) }}" alt=""> --}}
               <div class="card-body">
               <h5 class="card-title"> {{ $item->description }} </h5>
               <p class="card-text">{{ $item->address }}</p>

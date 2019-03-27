@@ -135,9 +135,4 @@ $(document).ready(function () {
 
 
 
-    $('#hidden_apartment').click(function () {
-        alert('ok')
-    });
-
-
 });
