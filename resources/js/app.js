@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 require('geocomplete');
+require('chart.js');
+
 
 
 $(document).ready(function () {
@@ -88,22 +90,6 @@ $(document).ready(function () {
         });
 
 
-        // var postData = {
-
-        //     indirizzo: indirizzo,
-        //     rooms_number: numStanze,
-        //     beds_number: numPostiLetto,
-        //     range: raggio,
-        //     services: services
-
-        // };
-
-        // // console.log(postData);
-
-        // var dataString = JSON.stringify(postData);
-
-        // console.log(dataString);
-
 
         $.ajaxSetup({
             headers: {
@@ -133,6 +119,61 @@ $(document).ready(function () {
         });
     });
 
+
+
+    //grafici visite
+
+    var ascissa = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    var visite_gen = $('#visite_gen').val();
+    var visite_feb = $('#visite_feb').val();
+    var visite_mar = $('#visite_mar').val();
+    var visite_apr = $('#visite_apr').val();
+    var visite_mag = $('#visite_mag').val();
+    var visite_giu = $('#visite_giu').val();
+    var visite_lug = $('#visite_lug').val();
+    var visite_ago = $('#visite_ago').val();
+    var visite_set = $('#visite_set').val();
+    var visite_ott = $('#visite_ott').val();
+    var visite_nov = $('#visite_nov').val();
+    var visite_dic = $('#visite_dic').val();
+
+
+    var ordinata = [visite_gen, visite_feb, visite_mar, visite_apr, visite_mag, visite_giu, visite_lug, visite_ago, visite_set, visite_ott, visite_nov, visite_dic]
+
+
+    var posizione = $('#my_chart')
+
+      var chart = new Chart(posizione, {
+          // The type of chart we want to create
+          type: 'bar',
+
+          // The data for our dataset
+          data: {
+              labels: ascissa,
+              datasets: [{
+                  label: 'Monthly Visits',
+                  backgroundColor: 'rgb(82, 39, 46, .3)',
+                  borderColor: 'rgb(82, 39, 46)',
+                  data: ordinata,
+              }]
+          },
+
+          // Configuration options go here
+        //   options : {
+        //       scales: {
+        //           yAxes: [{
+        //             //   barPercentage: 1,
+        //             //   barThickness: 60,
+        //             //   maxBarThickness: 8,
+        //             //   minBarLength: 20,
+        //             //   gridLines: {
+        //             //       offsetGridLines: true
+        //               }
+        //           }]
+        //       }
+        //   }
+      });
 
 
 });

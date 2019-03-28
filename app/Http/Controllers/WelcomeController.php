@@ -20,6 +20,59 @@ class WelcomeController extends Controller
         $apartment = Apartment::findOrFail($id); // ricerca tramite ID se non trovato errore 404 return view('ospiti.show', compact('ospiteCercato'));
 
 
-        return view('details_public', compact('apartment', 'visitors'));
+        $data = getdate();
+        $mese = $data['month'];
+        // $mese = "October";
+
+
+        if ($mese == "January") {
+            $apartment->increment('clicks_gen');
+        }
+         if ($mese == "February") {
+            $apartment->increment('clicks_feb');
+        }
+         if ($mese == "March") {
+            $apartment->increment('clicks_mar');
+        }
+         if ($mese == "April") {
+            $apartment->increment('clicks_apr');
+        }
+         if ($mese == "May") {
+            $apartment->increment('clicks_mag');
+        }
+         if ($mese == "June") {
+            $apartment->increment('clicks_giu');
+        }
+         if ($mese == "July") {
+            $apartment->increment('clicks_lug');
+        }
+         if ($mese == "August") {
+            $apartment->increment('clicks_ago');
+        }
+         if ($mese == "September") {
+            $apartment->increment('clicks_set');
+        }
+         if ($mese == "October") {
+            $apartment->increment('clicks_ott');
+        }
+         if ($mese == "November") {
+            $apartment->increment('clicks_nov');
+        }
+         if ($mese == "December") {
+            $apartment->increment('clicks_dic');
+        }
+
+
+
+
+        $apartment->update();
+
+
+
+
+
+
+
+        return view('details_public', compact('apartment'));
     }
 }

@@ -29,27 +29,33 @@
                             <th scope="col">Address</th>
                             <th scope="col">Image</th>
                             <th scope="col">Actions</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">Visibility</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($apartments as $item)
                                 <tr>
+
                                     <td><h4>{{ $item->description }}</h4></td>
                                     <td><h4>{{ $item->address }}</h4></td>
                                     {{-- <td><img src="{{ $item->image }}" alt=""></td> --}}
                                     {{-- <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td> --}}
-                                        @if (strpos( $item->image, 'https') !== false)
-                                            <td><img src="{{ $item->image }}" class="card-img-top img_section" alt="..."></td>
-                                        @else
-                                            <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td>
-                                        @endif
+                                    @if (strpos( $item->image, 'https') !== false)
+                                    <td><img src="{{ $item->image }}" class="card-img-top img_section" alt="..."></td>
+                                    @else
+                                    <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td>
+                                    @endif
                                     <td><a href="{{ route('apartment.edit', $item->id)}}" class="btn btn-success">modifica</a></td>
                                     <td><a href="{{ route('apartment.show', $item->id) }}" class="btn btn-primary">Show</a></td>
                                     <td><form action="{{ route('apartment.destroy', $item->id)}}" method="post">
-                                        @method('DELETE')
-                                        @csrf
-                                        <input class="btn btn-danger" type="submit" value="Delete">
-                                    </form></td>
+                                            @method('DELETE')
+                                            @csrf
+                                            <input class="btn btn-danger" type="submit" value="Delete">
+                                        </form></td>
+                                        <td><div class=" {{( $item->visibility == 1 ) ? null : 'hidden'}}"> <h6>Hidden</h6> </div></td>
                                 </tr>
                             @endforeach
                         </tbody>

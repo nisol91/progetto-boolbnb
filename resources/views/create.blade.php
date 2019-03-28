@@ -26,6 +26,7 @@
                 <h1>Add new Apartment</h1>
                 <form class="form-group" action="{{ route('apartment.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input type="text" name="description" class="form-control" id="" placeholder="Enter description">

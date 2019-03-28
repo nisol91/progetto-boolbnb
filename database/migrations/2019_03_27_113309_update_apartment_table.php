@@ -25,6 +25,7 @@ class UpdateApartmentTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('apartments');
+
     }
 }

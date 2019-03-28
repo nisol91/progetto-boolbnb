@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apartment extends Model
 {
-    protected $fillable = ['description', 'rooms_number', 'beds_number', 'baths_number', 'surface', 'address', 'image', 'lat', 'lng', 'user_id', 'visibility', 'price'];
+    protected $fillable = ['description', 'rooms_number', 'beds_number', 'baths_number', 'surface', 'address', 'image', 'lat', 'lng', 'user_id', 'visibility', 'price', 'clicks'];
 
     public function users() {
 
@@ -19,5 +19,9 @@ class Apartment extends Model
         public function messages()
     {
         return $this->belongsToMany('App\Message');
+    }
+            public function visits()
+    {
+        return $this->belongsToMany('App\Visit');
     }
 }
