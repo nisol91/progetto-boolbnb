@@ -70,6 +70,21 @@ class HomeController extends Controller
         );
     }
 
+    // public function search(Request $request){
+
+    //     // $input = request()->all();
+    //     $user = User::all();
+    //     // select user email from database
+    //     $data = User::where('email', 'LIKE', $request->email.'%')->get();
+            
+            
+    //     // return response()->json(
+    //     // ['success'=>$result,
+    //     //  'input'=>$input,
+    //     // ]
+    // );
+
 
 
 }
+

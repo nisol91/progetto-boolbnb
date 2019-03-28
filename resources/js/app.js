@@ -48,27 +48,27 @@ $(document).ready(function () {
     });
     var latitudines = $('#det_lat').text();
     var longitudines = $('#det_lng').text();
-    console.log(latitudines);
-    console.log(longitudines);
+    // console.log(latitudines);
+    // console.log(longitudines);
 
 
-        //terzo geocomplete per la detail page pubblica
-        $("#detailsAddress").geocomplete({
-            map: "#my_map_details",
-            location: [latitudines, longitudines],
-            details: ".details_details",
-            detailsAttribute: "data-geo"
-        }).bind("geocode:result", function (event, result) {
+    //terzo geocomplete per la detail page pubblica
+    $("#detailsAddress").geocomplete({
+        map: "#my_map_details",
+        location: [latitudines, longitudines],
+        details: ".details_details",
+        detailsAttribute: "data-geo"
+    }).bind("geocode:result", function (event, result) {
 
-            var latitude_details = result['geometry']['location'].lat();
-            var longitude_details = result['geometry']['location'].lng();
-            // console.log(latitude);
-            // console.log(longitude);
+        var latitude_details = result['geometry']['location'].lat();
+        var longitude_details = result['geometry']['location'].lng();
+        // console.log(latitude);
+        // console.log(longitude);
 
-            $("#latitude_details").val(latitude_details);
-            $("#longitude_details").val(longitude_details);
+        $("#latitude_details").val(latitude_details);
+        $("#longitude_details").val(longitude_details);
 
-        });
+    });
 
     $('#cercaBtn').on('click', function () {
         var address = $('#srcAddress').val();
@@ -87,23 +87,7 @@ $(document).ready(function () {
             }
         });
 
-
-        // var postData = {
-
-        //     indirizzo: indirizzo,
-        //     rooms_number: numStanze,
-        //     beds_number: numPostiLetto,
-        //     range: raggio,
-        //     services: services
-
-        // };
-
-        // // console.log(postData);
-
-        // var dataString = JSON.stringify(postData);
-
-        // console.log(dataString);
-
+        // CHIAMATA AJAX PER FILTRARE DATI FORM DELL'HOMEPAGE 
 
         $.ajaxSetup({
             headers: {
@@ -133,6 +117,26 @@ $(document).ready(function () {
         });
     });
 
+    // CHIAMATA AJAX PER AUTOCOMPLETAMENTO EMAIL UTENTI REGISTRATI
 
+    $('#autocomplete').on('keyup', function () {
+
+        var query = $('#autocomplete').autocomplete();
+        // console.log(query);
+
+        $.ajax({
+            url: '/ajaxRequest',
+            type: "POST",
+            data: {
+                email: query
+            },
+            success: function (data) {
+
+                console.log('ok');
+
+            }
+        })
+        // end of ajax call
+    });
 
 });

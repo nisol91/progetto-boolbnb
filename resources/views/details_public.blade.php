@@ -56,7 +56,7 @@
                 </div>
                     <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
+                    <input id="autocomplete" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email">
                 </div>
                 <div class="form-group">
                     <label for="body">Example textarea</label>

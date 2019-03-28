@@ -37288,6 +37288,27 @@ $(document).ready(function () {
       }
     });
   });
+  $('#autocomplete').on('keyup', function () {
+    // the text typed in the input field is assigned to a variable 
+    var query = $('#autocomplete').val();
+    console.log(query); // call to an ajax function
+
+    $.ajax({
+      // assign a controller function to perform search action - route name is search
+      url: "'/search.php?email=' + query + '&format=json'",
+      // since we are getting data methos is assigned as GET
+      type: "GET",
+      // data are sent the server
+      data: {
+        email: query
+      },
+      // if search is succcessfully done, this callback function is called
+      success: function success(data) {
+        // print the search results in the div called country_list(id)
+        console.log('ok');
+      }
+    }); // end of ajax call
+  });
 });
 
 /***/ }),
@@ -37368,8 +37389,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nicola/nicola_sites/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nicola/nicola_sites/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/progetto-boolbnb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

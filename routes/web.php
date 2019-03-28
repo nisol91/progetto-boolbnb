@@ -17,7 +17,7 @@ Route::get('/details/{id}', 'WelcomeController@details_public')->name('details.p
 
 //filtro ricerca con ajax
 Route::post('ajaxRequest', 'HomeController@ajaxRequestPost');
-Route::get('/filtered', 'Api\FilterController@filter')->name('filtered');
+// Route::get('/filtered', 'Api\FilterController@filter')->name('filtered');
 
 
 Auth::routes();
@@ -25,3 +25,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 Route::resource('/apartment', 'ApartmentController')->middleware('auth');
 Route::resource('/message', 'MessageController');
+
+
