@@ -4,6 +4,8 @@
 
         <div class="row">
             <div class="col-12">
+                {{-- <h5>Numero visualizzazioni: {{$apartment->clicks}}</h5> --}}
+
             <h1>Appartamento con id: {{ $apartment->id }}</h1>
                 <h1>Titolo:{{$apartment->description}}</h1>
                 <h5>Numero stanze:{{$apartment->rooms_number}}</h5>

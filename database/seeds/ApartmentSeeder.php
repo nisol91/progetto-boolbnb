@@ -34,15 +34,15 @@ class ApartmentSeeder extends Seeder
 
             $newApartment->user_id = $faker->numberBetween($min = 1, $max = 10);
 
-            $services = [];
+            // $services = [];
             // for ($i=1; $i < 5; $i++) {
-                $servizio = Service::inRandomOrder()->first();
-                $services[] = $servizio['id'];
+                // $servizio = Service::inRandomOrder()->first();
+                // $services[] = $servizio['id'];
             // }
             // dd($services);
             $newApartment->save();
 
-            $newApartment->services()->sync($services);
+            // $newApartment->services()->sync($services);
 
         }
     }

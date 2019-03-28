@@ -63,6 +63,7 @@ class ApartmentController extends Controller
             'lng' => [],
             'services' => [],
             'user_id'=>[],
+            'clicks'=>[],
         ]);
 
 
@@ -100,6 +101,9 @@ class ApartmentController extends Controller
         $request = Message::all();
 
         $messages = $request->where('apartment_id', $apartment['id']);
+
+
+
 
         return view('show', compact('apartment', 'messages'));
     }
