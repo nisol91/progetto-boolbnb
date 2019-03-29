@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Apartment;
 use App\Service;
-use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -61,8 +62,6 @@ class HomeController extends Controller
 
         }
 
-
-
         return response()->json(
             ['success'=>$result,
              'input'=>$input,
@@ -70,20 +69,14 @@ class HomeController extends Controller
         );
     }
 
-    // public function search(Request $request){
+    public function autocomplete() {
 
-    //     // $input = request()->all();
-    //     $user = User::all();
-    //     // select user email from database
-    //     $data = User::where('email', 'LIKE', $request->email.'%')->get();
-            
-            
-    //     // return response()->json(
-    //     // ['success'=>$result,
-    //     //  'input'=>$input,
-    //     // ]
-    // );
+    return response()->json(User::pluck('email'), 200);
+    // dd($data);
 
+    // return view('details_public', compact('data'));
+
+    }
 
 
 }

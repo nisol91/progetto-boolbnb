@@ -37220,9 +37220,9 @@ $(document).ready(function () {
     $("#longitude_search").val(longitude_search);
   });
   var latitudines = $('#det_lat').text();
-  var longitudines = $('#det_lng').text();
-  console.log(latitudines);
-  console.log(longitudines); //terzo geocomplete per la detail page pubblica
+  var longitudines = $('#det_lng').text(); // console.log(latitudines);
+  // console.log(longitudines);
+  //terzo geocomplete per la detail page pubblica
 
   $("#detailsAddress").geocomplete({
     map: "#my_map_details",
@@ -37252,16 +37252,7 @@ $(document).ready(function () {
       if (ischecked) {
         services += $(this).val() + " ";
       }
-    }); // var postData = {
-    //     indirizzo: indirizzo,
-    //     rooms_number: numStanze,
-    //     beds_number: numPostiLetto,
-    //     range: raggio,
-    //     services: services
-    // };
-    // // console.log(postData);
-    // var dataString = JSON.stringify(postData);
-    // console.log(dataString);
+    }); // CHIAMATA AJAX PER FILTRARE DATI FORM DELL'HOMEPAGE 
 
     $.ajaxSetup({
       headers: {
@@ -37287,27 +37278,23 @@ $(document).ready(function () {
         console.log('KOKOKOKOKO');
       }
     });
-  });
-  $('#autocomplete').on('keyup', function () {
-    // the text typed in the input field is assigned to a variable 
-    var query = $('#autocomplete').val();
-    console.log(query); // call to an ajax function
+  }); // CHIAMATA AJAX PER AUTOCOMPLETAMENTO EMAIL UTENTI REGISTRATI
 
+  $("#autocomplete_email").one('keyup', function () {
     $.ajax({
-      // assign a controller function to perform search action - route name is search
-      url: "'/search.php?email=' + query + '&format=json'",
-      // since we are getting data methos is assigned as GET
-      type: "GET",
-      // data are sent the server
-      data: {
-        email: query
-      },
-      // if search is succcessfully done, this callback function is called
+      url: '/ajaxRequest',
+      type: 'GET',
       success: function success(data) {
-        // print the search results in the div called country_list(id)
-        console.log('ok');
-      }
-    }); // end of ajax call
+        var locationsArray = data; // console.log(locationsArray);
+
+        for (var index = 0; index < locationsArray.length; index++) {
+          var singleEmail = locationsArray[index]; // console.log(singleEmail);
+
+          $('#email_list').append("<option>" + singleEmail + "</option>");
+        }
+      },
+      error: function error() {}
+    });
   });
 });
 

@@ -8,6 +8,7 @@ require('./bootstrap');
 require('geocomplete');
 
 
+
 $(document).ready(function () {
 
 
@@ -119,24 +120,28 @@ $(document).ready(function () {
 
     // CHIAMATA AJAX PER AUTOCOMPLETAMENTO EMAIL UTENTI REGISTRATI
 
-    $('#autocomplete').on('keyup', function () {
+    $("#autocomplete_email").one('keyup', function () {
 
-        var query = $('#autocomplete').autocomplete();
-        // console.log(query);
 
         $.ajax({
             url: '/ajaxRequest',
-            type: "POST",
-            data: {
-                email: query
-            },
+            type: 'GET',
             success: function (data) {
-
-                console.log('ok');
+                var locationsArray = data;
+                // console.log(locationsArray);
+                for (let index = 0; index < locationsArray.length; index++) {
+                    const singleEmail = locationsArray[index];
+                    // console.log(singleEmail);
+                    $('#email_list').append("<option>" + singleEmail + "</option>")
+                }
+            },
+            error: function () {
 
             }
-        })
-        // end of ajax call
+
+        });
+
     });
+
 
 });
