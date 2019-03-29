@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "braintree": "^2.16.0",
         "geocomplete": "^1.7.0",
         "jquery-ui": "^1.12.1"
     }

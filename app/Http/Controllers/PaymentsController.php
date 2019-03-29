@@ -20,6 +20,7 @@ class PaymentsController extends Controller
             'token' => Braintree_ClientToken::generate(),
 
         ]);
+        
     }
     
     public function process(Request $request)

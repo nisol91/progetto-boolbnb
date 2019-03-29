@@ -33,7 +33,7 @@ Route::resource('/message', 'MessageController');
 Route::get('/payment', 'PaymentsController@index')->name('payment.index');
 Route::get('/payment/process', 'PaymentsController@process')->name('payment.process');
 
-Route::get('/braintree/token', 'PaymentsController@token')->name('payment.token');
+Route::post('/braintree/token', 'PaymentsController@token')->name('payment.token');
 
 
 

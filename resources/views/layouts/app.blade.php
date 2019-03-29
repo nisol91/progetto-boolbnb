@@ -28,6 +28,8 @@
     
     <!-- includes the Braintree JS client SDK -->
     <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.38.1/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.38.1/js/hosted-fields.min.js"></script>
 
     <!-- includes jQuery -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
