@@ -45,6 +45,7 @@
                                         @csrf
                                         <input class="btn btn-danger" type="submit" value="Delete">
                                     </form></td>
+                                   <td><a href="{{ route('payment.index') }}" class="btn btn-primary">Pay</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

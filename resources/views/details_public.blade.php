@@ -58,7 +58,6 @@
                     <label for="autocomplete_email">Email address</label>
                     <input id="autocomplete_email" type="email" class="form-control" placeholder="name@example.com" name="email" list="email_list" autocomplete="on">
                     <datalist id="email_list">
-                        {{-- <option>Detroit Lions</option> --}}
                     </datalist>
                 </div>
                 <div class="form-group">
