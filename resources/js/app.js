@@ -7,6 +7,8 @@
 require('./bootstrap');
 require('geocomplete');
 require('chart.js');
+import Handlebars from 'handlebars/dist/cjs/handlebars.js'
+
 
 
 
@@ -72,7 +74,18 @@ $(document).ready(function () {
 
         });
 
+
+
+        //ricerca welcome page
     $('#cercaBtn').on('click', function () {
+
+
+        //inizio nascondendo tutte le card
+        $('.appa_all').hide();
+
+
+        //prendo le variabili dal form
+
         var address = $('#srcAddress').val();
         var lat = $('#latitude_search').val();
         var lng = $('#longitude_search').val();
@@ -80,15 +93,19 @@ $(document).ready(function () {
         var rooms_number = $('#numStanze').val();
         var beds_number = $('#numPostiLetto').val();
         var raggio = $('#raggio').val();
-        var services = $('.servizi').val();;
+        var services = [];
 
         $(".chkServices").each(function () {
             var ischecked = $(this).is(":checked");
             if (ischecked) {
-                services += $(this).val() + " ";
+                services.push($(this).val());
+
             }
+
         });
 
+
+        // console.log(services);
 
 
         $.ajaxSetup({
@@ -108,15 +125,51 @@ $(document).ready(function () {
                 rooms_number: rooms_number,
                 beds_number: beds_number,
                 raggio: raggio,
-                services: services
+                services: services,
             },
             success: function (data) {
                 console.log(data);
+
+
+                //stampa dati con handlebars
+
+                var collection = data.final;
+                console.log(collection);
+
+                var source = $('#handlebars-template').html();
+                var template = Handlebars.compile(source);
+                for (const key in collection) {
+
+                    var elem = `${key}`
+                    console.log(elem);
+                    console.log(collection[key].description);
+
+                    var my_template = {
+                        desc: collection[key].description,
+                        prezzo: collection[key].price,
+
+
+
+                    };
+                    var html = template(my_template);
+
+                    $('.appa_filtered').append(html);
+                    // console.log(html);
+                }
+
             },
             error: function () {
                 console.log('KOKOKOKOKO');
             }
         });
+
+
+
+
+
+
+
+
     });
 
 

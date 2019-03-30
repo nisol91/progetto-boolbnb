@@ -12,13 +12,24 @@ class WelcomeController extends Controller
     {
         $apartments = Apartment::all();
         $services = Service::all();
+
+        // foreach ($apartments as $item) {
+        //     foreach ($item->services as $value) {
+        //         $servizi_appa[] = $value->service;
+        //     }
+        // }
+        // dd($servizi_appa);
         // dd($apartments);
+        // dd($services);
+
+
         return view('welcome', compact('apartments', 'services'));
     }
+
+
         public function details_public($id)
     {
         $apartment = Apartment::findOrFail($id); // ricerca tramite ID se non trovato errore 404 return view('ospiti.show', compact('ospiteCercato'));
-
 
         $data = getdate();
         $mese = $data['month'];
@@ -62,16 +73,7 @@ class WelcomeController extends Controller
             $apartment->increment('clicks_dic');
         }
 
-
-
-
         $apartment->update();
-
-
-
-
-
-
 
         return view('details_public', compact('apartment'));
     }

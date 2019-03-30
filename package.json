@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "chart.js": "^2.8.0",
-        "geocomplete": "^1.7.0"
+        "geocomplete": "^1.7.0",
+        "handlebars": "^4.1.1"
     }
 }

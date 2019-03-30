@@ -85,8 +85,8 @@
 
 
 
-<div class="container">
-  <div class=row>
+<div class="container appa_all">
+  <div class="row">
     <div class="col-12-md">
       <h3>Appartamenti disponibili con una modifica</h3>
     </div>
@@ -113,6 +113,38 @@
     </div>
   </div>
 </div>
+
+{{-- container per template handlebars --}}
+<div class="container appa_filtered">
+    <div class="row">
+        <div class="col-12-md">
+        <h3>Appartamenti disponibili con una modifica</h3>
+        </div>
+    </div>
+    <div class="row" >
+
+
+    </div>
+  </div>
+</div>
+
+
+{{-- template handlebars --}}
+<script id="handlebars-template" type="text/x-handlebars-template">
+    <div class="col-md-3 ">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"> @{{ desc }} </h5>
+            <p class="card-text"></p>
+            <p class="card-text">Prezzo per notte: @{{ prezzo }} euro</p>
+
+            <a href="" class="btn btn-primary">Show</a>
+            </div>
+        </div>
+    </div>
+</script>
+
+
 
 <footer>
 <div class="container">

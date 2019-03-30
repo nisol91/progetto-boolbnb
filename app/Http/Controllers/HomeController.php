@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -31,6 +31,10 @@ class HomeController extends Controller
 
         return view('home', compact('apartments'));
     }
+
+
+
+
 
         public function ajaxRequestPost(Request $request)
     {
@@ -56,16 +60,42 @@ class HomeController extends Controller
         }
 
         if (!empty($input['services'])) {
-            $services[] = $apartment->where('services', $input['services']);
-            $result[] = $services;
+            foreach ($apartments as $item) {
+                $servizi_appa = [];
+                foreach ($item->services as $value) {
+                    $servizi_appa[] = $value->service;
+                }
+                if ($input['services'] == $servizi_appa) {
+                    $services_filtered[] = $item;
+                    // $result[] = $services_filtered;
+                } else {
+                    foreach ($input['services'] as $value) {
+                        if (in_array($value, $servizi_appa)) {
+                        $services_filtered[] = $item;
+                        }
+                    }
+                }
+            }
+
+        $result[] = array_unique($services_filtered);
 
         }
 
+        foreach ($result as $value) {
+            foreach ($value as $item) {
+                $final[] = $item;
+            }
+        }
+        $final_results = array_unique($final);
 
 
         return response()->json(
             ['success'=>$result,
              'input'=>$input,
+            'final'=>$final_results,
+
+            //  'servizi_appa'=>$servizi_appa,
+            //  'input_services'=>$input['services'],
             ]
         );
     }
