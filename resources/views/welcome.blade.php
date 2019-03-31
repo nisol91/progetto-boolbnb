@@ -43,7 +43,7 @@
 
                 <div class="form-group">
                     <select class="form-control" name="beds_number"id="numPostiLetto">
-                    <option selected>Seleziona numero posti letto</option>
+                    <option selected value="">Seleziona numero posti letto</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -55,7 +55,7 @@
 
                 <div class="form-group">
                     <select class="form-control" name="range" id='raggio'>
-                    <option selected>Seleziona il raggio di distanza</option>
+                    <option selected value="">Seleziona il raggio di distanza</option>
                     <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>

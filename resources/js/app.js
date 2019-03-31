@@ -129,12 +129,13 @@ $(document).ready(function () {
             },
             success: function (data) {
                 console.log(data);
+                var collection = data.final;
+                console.log(collection);
+
 
 
                 //stampa dati con handlebars
 
-                var collection = data.final;
-                console.log(collection);
 
                 var source = $('#handlebars-template').html();
                 var template = Handlebars.compile(source);

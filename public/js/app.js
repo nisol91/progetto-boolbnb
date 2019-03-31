@@ -74335,10 +74335,10 @@ $(document).ready(function () {
         services: services
       },
       success: function success(data) {
-        console.log(data); //stampa dati con handlebars
-
+        console.log(data);
         var collection = data.final;
-        console.log(collection);
+        console.log(collection); //stampa dati con handlebars
+
         var source = $('#handlebars-template').html();
         var template = handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0___default.a.compile(source);
 

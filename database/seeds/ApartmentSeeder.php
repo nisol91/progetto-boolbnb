@@ -21,9 +21,9 @@ class ApartmentSeeder extends Seeder
             $newApartment = new Apartment;
 
             $newApartment->description = $faker->sentence(4);
-            $newApartment->rooms_number = $faker->numberBetween($min = 0, $max = 50);
-            $newApartment->beds_number = $faker->numberBetween($min = 0, $max = 50);
-            $newApartment->baths_number = $faker->numberBetween($min = 0, $max = 50);
+            $newApartment->rooms_number = $faker->numberBetween($min = 1, $max = 50);
+            $newApartment->beds_number = $faker->numberBetween($min = 1, $max = 50);
+            $newApartment->baths_number = $faker->numberBetween($min = 1, $max = 50);
             $newApartment->surface = $faker->numberBetween($min = 0, $max = 50);
             $newApartment->address = $faker->city;
             $newApartment->lat = $faker->latitude($min = -90, $max = 90) ;

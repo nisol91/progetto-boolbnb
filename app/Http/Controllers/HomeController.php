@@ -43,23 +43,34 @@ class HomeController extends Controller
         $apartments = Apartment::all();
         $services = Service::all();
 
+        $filters_number = [];
 
         if (!empty($input['address'])) {
+            $filters_number[] = 1;
             $address = $apartments->where('address', $input['address']);
             $result[] = $address;
         }
 
         if (!empty($input['rooms_number'])) {
+            $filters_number[] = 1;
+
+
             $rooms_number = $apartments->where('rooms_number', $input['rooms_number']);
             $result[] = $rooms_number;
         }
 
         if (!empty($input['beds_number'])) {
+            $filters_number[] = 1;
+
+
             $beds_number = $apartments->where('beds_number', $input['beds_number']);
             $result[] = $beds_number;
         }
 
         if (!empty($input['services'])) {
+            $filters_number[] = 1;
+
+
             foreach ($apartments as $item) {
                 $servizi_appa = [];
                 foreach ($item->services as $value) {
@@ -81,18 +92,26 @@ class HomeController extends Controller
 
         }
 
+        $final = [];
         foreach ($result as $value) {
             foreach ($value as $item) {
                 $final[] = $item;
             }
         }
-        $final_results = array_unique($final);
+
+        //ogni volta che una casella di filtro non e vuota aggiungo un elemento al filters_number
+        //conto quindi quanti filtri ci sono.
+        //a questo punto se un appa compare tante volte quanti sono i filtri allora va bene
+
+        // $final_results = array_unique($final);
 
 
         return response()->json(
             ['success'=>$result,
              'input'=>$input,
-            'final'=>$final_results,
+             'filters'=>count($filters_number),
+             'final'=>$final,
+             // 'final_1'=>$final_results,
 
             //  'servizi_appa'=>$servizi_appa,
             //  'input_services'=>$input['services'],
