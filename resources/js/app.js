@@ -141,20 +141,43 @@ $(document).ready(function () {
                 for (const key in collection) {
 
                     var elem = `${key}`
-                    console.log(elem);
-                    console.log(collection[key].description);
+                    // console.log(elem);
+                    // console.log(collection[key].description);
+                    // console.log(collection[key].visibility);
+
+
+                    //link vs storage immagini
+                    var immagine = collection[key].image
+                    console.log(immagine);
+
+                    if (immagine.includes('http')) {
+                        var src = immagine
+                    } else {
+                        src = '/home/nicola/nicola_sites/progetto-boolbnb/storage/app/public/' + immagine
+                        console.log(src);
+
+                    }
+
 
                     var my_template = {
                         desc: collection[key].description,
                         prezzo: collection[key].price,
-
-
+                        address: collection[key].address,
+                        id_: collection[key].id,
+                        source: src,
 
                     };
                     var html = template(my_template);
 
                     $('.appa_filtered').append(html);
                     // console.log(html);
+
+                    //hidden apartments
+                    if (collection[key].visibility == 1) {
+                        $('#container-card').addClass('hidden')
+
+                    }
+
                 }
 
             },

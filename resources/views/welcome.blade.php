@@ -92,24 +92,24 @@
     </div>
   </div>
   <div class="row">
-  @foreach ($apartments as $item)
-      <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
-          <div class="card">
-              @if (strpos( $item->image, 'https') !== false)
-                <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
-              @else
-                <img src="{{ asset('storage/' . $item->image) }}" alt="">
-              @endif
-              <div class="card-body">
-              <h5 class="card-title"> {{ $item->description }} </h5>
-              <p class="card-text">{{ $item->address }}</p>
-              <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
+        @foreach ($apartments as $item)
+        <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
+            <div class="card">
+                @if (strpos( $item->image, 'https') !== false)
+                    <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+                @else
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="">
+                @endif
+                <div class="card-body">
+                <h5 class="card-title"> {{ $item->description }} </h5>
+                <p class="card-text">{{ $item->address }}</p>
+                <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
 
-              <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
-              </div>
-          </div>
-      </div>
-      @endforeach
+                <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
   </div>
 </div>
@@ -121,7 +121,7 @@
         <h3>Appartamenti disponibili con una modifica</h3>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
 
 
     </div>
@@ -131,15 +131,16 @@
 
 {{-- template handlebars --}}
 <script id="handlebars-template" type="text/x-handlebars-template">
-    <div class="col-md-3 ">
+    <div class="col-md-3" id="container-card">
         <div class="card">
+        <img src="@{{ source }}" class="card-img-top img_section" alt="...">
             <div class="card-body">
-            <h5 class="card-title"> @{{ desc }} </h5>
-            <p class="card-text"></p>
+            <h5 class="card-title"> @{{ desc }}</h5>
+            <p class="card-text">@{{ address }}</p>
             <p class="card-text">Prezzo per notte: @{{ prezzo }} euro</p>
 
-            <a href="" class="btn btn-primary">Show</a>
-            </div>
+
+            <a href="details/@{{ id_ }}" class="btn btn-primary">Show</a>
         </div>
     </div>
 </script>

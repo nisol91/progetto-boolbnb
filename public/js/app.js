@@ -74343,15 +74343,35 @@ $(document).ready(function () {
         var template = handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0___default.a.compile(source);
 
         for (var key in collection) {
-          var elem = "".concat(key);
-          console.log(elem);
-          console.log(collection[key].description);
+          var elem = "".concat(key); // console.log(elem);
+          // console.log(collection[key].description);
+          // console.log(collection[key].visibility);
+          //link vs storage immagini
+
+          var immagine = collection[key].image;
+          console.log(immagine);
+
+          if (immagine.includes('http')) {
+            var src = immagine;
+          } else {
+            src = '/home/nicola/nicola_sites/progetto-boolbnb/storage/app/public/' + immagine;
+            console.log(src);
+          }
+
           var my_template = {
             desc: collection[key].description,
-            prezzo: collection[key].price
+            prezzo: collection[key].price,
+            address: collection[key].address,
+            id_: collection[key].id,
+            source: src
           };
           var html = template(my_template);
           $('.appa_filtered').append(html); // console.log(html);
+          //hidden apartments
+
+          if (collection[key].visibility == 1) {
+            $('#container-card').addClass('hidden');
+          }
         }
       },
       error: function error() {
