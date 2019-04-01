@@ -29,11 +29,12 @@ Route::resource('/apartment', 'ApartmentController')->middleware('auth');
 Route::resource('/message', 'MessageController');
 
 // BRAINTREE
-
 Route::get('/payment', 'PaymentsController@index')->name('payment.index');
-Route::get('/payment/process', 'PaymentsController@process')->name('payment.process');
 
-Route::post('/braintree/token', 'PaymentsController@token')->name('payment.token');
+Route::post('/payment/process', 'PaymentsController@process')->name('payment.process');
+
+
+Route::get('/braintree/token', 'PaymentsController@token')->name('payment.token');
 
 
 
