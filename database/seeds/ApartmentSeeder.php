@@ -20,8 +20,21 @@ class ApartmentSeeder extends Seeder
 
             $newApartment = new Apartment;
 
+            $descrizioni = ['Appartamento con vista', 'Appartamento in centro storico', 'Appartamento in edificio moderno', 'Casa indipendente', 'Biocale in città', 'Appartamento', 'Appartamento rustico', 'Casa in campagna', 'Casa nel bosco', 'Casa in riva al mare', 'Villa isolata'];
+            $citta = ['Milano', 'Parma', 'Torino', 'Trento', 'Bologna', 'Roma', 'Venezia', 'Firenze', 'Palermo', 'Aosta', 'Modena'];
+            $prezzi = [10,20,30,40,50,60];
 
-            $newApartment->description = randomElement($array = array ('a','b','c'));
+
+            $newApartment->description = $faker->randomElement($descrizioni);
+            $newApartment->rooms_number = $faker->numberBetween($min = 1, $max = 10);
+            $newApartment->beds_number = $faker->numberBetween($min = 1, $max = 10);
+            $newApartment->baths_number = $faker->numberBetween($min = 1, $max = 5);
+            $newApartment->surface = $faker->numberBetween($min = 0, $max = 20);
+            $newApartment->address = $faker->randomElement($citta);
+            $newApartment->lat = $faker->latitude($min = 40, $max = 45) ;
+            $newApartment->lng = $faker->longitude($min = 7, $max = 15);
+            $newApartment->image = $faker->imageUrl($width = 640, $height = 480, 'nature');
+            $newApartment->price = $faker->randomElement($prezzi);
 
             // $newApartment->description = $faker->sentence(4);
             // $newApartment->rooms_number = $faker->numberBetween($min = 1, $max = 50);
