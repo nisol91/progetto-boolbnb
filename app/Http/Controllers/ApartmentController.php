@@ -87,7 +87,7 @@ class ApartmentController extends Controller
         $newApartment->services()->sync($validatedData['services']);
 
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success','Successfully created!');
     }
 
     /**
@@ -154,7 +154,7 @@ class ApartmentController extends Controller
 
         $apartment->update($validatedData);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success','Successfully updated!');
 
     }
 

@@ -20,16 +20,19 @@ class ApartmentSeeder extends Seeder
 
             $newApartment = new Apartment;
 
-            $newApartment->description = $faker->sentence(4);
-            $newApartment->rooms_number = $faker->numberBetween($min = 1, $max = 50);
-            $newApartment->beds_number = $faker->numberBetween($min = 1, $max = 50);
-            $newApartment->baths_number = $faker->numberBetween($min = 1, $max = 50);
-            $newApartment->surface = $faker->numberBetween($min = 0, $max = 50);
-            $newApartment->address = $faker->city;
-            $newApartment->lat = $faker->latitude($min = -90, $max = 90) ;
-            $newApartment->lng = $faker->longitude($min = -180, $max = 180);
-            $newApartment->image = $faker->imageUrl($width = 640, $height = 480, 'nature');
-            $newApartment->price = $faker->numberBetween($min = 20, $max = 100);
+
+            $newApartment->description = randomElement($array = array ('a','b','c'));
+
+            // $newApartment->description = $faker->sentence(4);
+            // $newApartment->rooms_number = $faker->numberBetween($min = 1, $max = 50);
+            // $newApartment->beds_number = $faker->numberBetween($min = 1, $max = 50);
+            // $newApartment->baths_number = $faker->numberBetween($min = 1, $max = 50);
+            // $newApartment->surface = $faker->numberBetween($min = 0, $max = 50);
+            // $newApartment->address = $faker->city;
+            // $newApartment->lat = $faker->latitude($min = -90, $max = 90) ;
+            // $newApartment->lng = $faker->longitude($min = -180, $max = 180);
+            // $newApartment->image = $faker->imageUrl($width = 640, $height = 480, 'nature');
+            // $newApartment->price = $faker->numberBetween($min = 20, $max = 100);
 
 
             $newApartment->user_id = $faker->numberBetween($min = 1, $max = 10);

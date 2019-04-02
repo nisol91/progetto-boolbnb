@@ -11,17 +11,36 @@ class WelcomeController extends Controller
     public function index_public()
     {
         $apartments = Apartment::all();
+        $appa_arr = $apartments;
+
         $services = Service::all();
 
+
+
+//###########prove di consolelog#####################
+
+
+//         foreach ($apartments as $apartment) {
+//     # code...
+//     $ap = $apartment->where('services', ['Facilis.']);
+//     var_dump($ap);
+// }
+        // $apartments = Apartment::orderBy('id')->get();
+        // foreach ($apartments as $apartment) {
+        //     // dd($apartments->services());
+        // }
         // foreach ($apartments as $item) {
         //     foreach ($item->services as $value) {
-        //         $servizi_appa[] = $value->service;
+        //         $servizi_appa[] = $value;
         //     }
+        //     dd($servizi_appa);
         // }
         // dd($servizi_appa);
         // dd($apartments);
         // dd($services);
-
+        // foreach ($apartments as $item) {
+        //     var_dump($item->image);
+        // }
 
         return view('welcome', compact('apartments', 'services'));
     }

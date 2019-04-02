@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if ($message = Session::get('success'))
+<div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{{ $message }}</strong>
+</div>
+@endif
 <div class="container-fluid">
   @if ($message = Session::get('deleted'))
     <div class="alert alert-danger alert-block">
@@ -56,6 +63,7 @@
                                             <input class="btn btn-danger" type="submit" value="Delete">
                                         </form></td>
                                         <td><div class=" {{( $item->visibility == 1 ) ? null : 'hidden'}}"> <h6>Hidden</h6> </div></td>
+
                                 </tr>
                             @endforeach
                         </tbody>

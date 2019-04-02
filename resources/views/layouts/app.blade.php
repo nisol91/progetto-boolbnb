@@ -32,6 +32,9 @@
 
     {{-- Braintree --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
 
     <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
 

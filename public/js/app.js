@@ -74300,14 +74300,19 @@ $(document).ready(function () {
 
   $('#cercaBtn').on('click', function () {
     //inizio nascondendo tutte le card
-    $('.appa_all').hide(); //prendo le variabili dal form
+    $('.appa_all').hide(); //nascondo anche le card di un eventuale ricerca precedente
+
+    $('.appa_filtered').find('.card').remove(); //prendo le variabili dal form
 
     var address = $('#srcAddress').val();
     var lat = $('#latitude_search').val();
     var lng = $('#longitude_search').val();
+    var insert_lat = $('#insert_lat').val();
+    var insert_lng = $('#insert_lng').val();
     var rooms_number = $('#numStanze').val();
     var beds_number = $('#numPostiLetto').val();
     var raggio = $('#raggio').val();
+    var price = $('#prezzo').val();
     var services = [];
     $(".chkServices").each(function () {
       var ischecked = $(this).is(":checked");
@@ -74332,53 +74337,104 @@ $(document).ready(function () {
         rooms_number: rooms_number,
         beds_number: beds_number,
         raggio: raggio,
-        services: services
+        services: services,
+        insert_lat: insert_lat,
+        insert_lng: insert_lng,
+        price: price
       },
       success: function success(data) {
         console.log(data);
-        var collection = data.final;
-        console.log(collection); //stampa dati con handlebars
-
-        var source = $('#handlebars-template').html();
-        var template = handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0___default.a.compile(source);
+        var collection = data.success;
+        console.log(collection);
 
         for (var key in collection) {
-          var elem = "".concat(key); // console.log(elem);
+          // console.log(elem);
           // console.log(collection[key].description);
           // console.log(collection[key].visibility);
-          //link vs storage immagini
+          //calcolo distanze raggio
+          var measure = function measure(lat1, lon1, lat2, lon2) {
+            //haversine formula
+            var R = 6378.137; // Radius of earth in KM
 
-          var immagine = collection[key].image;
-          console.log(immagine);
-
-          if (immagine.includes('http')) {
-            var src = immagine;
-          } else {
-            src = '/home/nicola/nicola_sites/progetto-boolbnb/storage/app/public/' + immagine;
-            console.log(src);
-          }
-
-          var my_template = {
-            desc: collection[key].description,
-            prezzo: collection[key].price,
-            address: collection[key].address,
-            id_: collection[key].id,
-            source: src
+            var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+            var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            return d; // distanza in km
           };
-          var html = template(my_template);
-          $('.appa_filtered').append(html); // console.log(html);
-          //hidden apartments
 
-          if (collection[key].visibility == 1) {
-            $('#container-card').addClass('hidden');
+          var elem = "".concat(key);
+          console.log([collection[key].lat, collection[key].lng, insert_lat, insert_lng]);
+          var distanza_decimal = measure(collection[key].lat, collection[key].lng, insert_lat, insert_lng);
+          var distanza = Math.round(distanza_decimal);
+          console.log(distanza); //aggiungo a ogni appartamento la sua distanza dal punto di coordinate note
+
+          collection[key].distance = distanza;
+          var dist = collection[key].distance;
+          console.log(collection); //ora c e un if in cui se ho definito il raggio stampo solo gli appartamenti a distanza inferiore al raggio,
+          //se invece l ho definito, allora stampo normalmente.
+
+          if (raggio > 0) {
+            console.log(raggio);
+
+            if (distanza <= raggio) {
+              handlebars_print_collection(collection[key]);
+            }
+          } else {
+            handlebars_print_collection(collection[key]);
           }
-        }
+        } //Riordino by distanza--
+
+
+        $('.appa_filtered .contenitore_appa').sort(sort_li) // sort elements
+        .appendTo('.appa_filtered'); // append again to the list
+        // sort function callback
+
+        function sort_li(a, b) {
+          // return ($(a).attr("dist")) < ($(b).attr("dist")) ? 1 : -1;
+          return $(a).attr("dist") - $(b).attr("dist");
+        } //-------
+
       },
       error: function error() {
         console.log('KOKOKOKOKO');
       }
     });
-  }); //grafici visite
+  }); //stampa dati con handlebars
+
+  function handlebars_print_collection(indice) {
+    var source = $('#handlebars-template').html();
+    var template = handlebars_dist_cjs_handlebars_js__WEBPACK_IMPORTED_MODULE_0___default.a.compile(source); //link vs storage immagini
+
+    var immagine = indice.image;
+    console.log(immagine);
+
+    if (immagine.includes('http')) {
+      var src = immagine;
+    } else {
+      src = 'http://127.0.0.1:8000/storage/' + immagine;
+      console.log(src);
+    }
+
+    var my_template = {
+      desc: indice.description,
+      prezzo: indice.price,
+      address: indice.address,
+      id_: indice.id,
+      dist: indice.distance,
+      source: src
+    };
+    var html = template(my_template);
+    $('.appa_filtered').append(html); // console.log(html);
+    //hidden apartments
+
+    if (indice.visibility == 1) {
+      $('#container-card').addClass('hidden');
+    }
+  } //braintree
+  //grafici visite
+
 
   var ascissa = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var visite_gen = $('#visite_gen').val();
@@ -74407,21 +74463,135 @@ $(document).ready(function () {
         borderColor: 'rgb(82, 39, 46)',
         data: ordinata
       }]
-    } // Configuration options go here
-    //   options : {
-    //       scales: {
-    //           yAxes: [{
-    //             //   barPercentage: 1,
-    //             //   barThickness: 60,
-    //             //   maxBarThickness: 8,
-    //             //   minBarLength: 20,
-    //             //   gridLines: {
-    //             //       offsetGridLines: true
-    //               }
-    //           }]
-    //       }
-    //   }
+    }
+  }); //autocomplete
 
+  $("#autocomplete_email").one('keyup', function () {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: '/ajaxRequestAuto',
+      type: 'GET',
+      success: function success(data) {
+        var locationsArray = data; // console.log(locationsArray);
+
+        for (var index = 0; index < locationsArray.length; index++) {
+          var singleEmail = locationsArray[index]; // console.log(singleEmail);
+
+          $('#email_list').append("<option name='email'>" + singleEmail + "</option>");
+        }
+      },
+      error: function error() {
+        console.log('errore');
+      }
+    });
+  }); //######filtro selezionando i checkbox
+
+  $('.chkServices').on('click', function () {
+    //inizio nascondendo tutte le card
+    $('.appa_all').hide(); //nascondo anche le card di un eventuale ricerca precedente
+
+    $('.appa_filtered').find('.card').remove(); //prendo le variabili dal form
+
+    var address = $('#srcAddress').val();
+    var lat = $('#latitude_search').val();
+    var lng = $('#longitude_search').val();
+    var insert_lat = $('#insert_lat').val();
+    var insert_lng = $('#insert_lng').val();
+    var rooms_number = $('#numStanze').val();
+    var beds_number = $('#numPostiLetto').val();
+    var raggio = $('#raggio').val();
+    var price = $('#prezzo').val();
+    var services = [];
+    $(".chkServices").each(function () {
+      var ischecked = $(this).is(":checked");
+
+      if (ischecked) {
+        services.push($(this).val());
+      }
+    }); // console.log(services);
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      type: 'POST',
+      url: '/ajaxRequest',
+      data: {
+        address: address,
+        lat: lat,
+        lng: lng,
+        rooms_number: rooms_number,
+        beds_number: beds_number,
+        raggio: raggio,
+        services: services,
+        insert_lat: insert_lat,
+        insert_lng: insert_lng,
+        price: price
+      },
+      success: function success(data) {
+        console.log(data);
+        var collection = data.success;
+        console.log(collection);
+
+        for (var key in collection) {
+          // console.log(elem);
+          // console.log(collection[key].description);
+          // console.log(collection[key].visibility);
+          //calcolo distanze raggio
+          var measure = function measure(lat1, lon1, lat2, lon2) {
+            //haversine formula
+            var R = 6378.137; // Radius of earth in KM
+
+            var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+            var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            return d; // distanza in km
+          };
+
+          var elem = "".concat(key);
+          console.log([collection[key].lat, collection[key].lng, insert_lat, insert_lng]);
+          var distanza_decimal = measure(collection[key].lat, collection[key].lng, insert_lat, insert_lng);
+          var distanza = Math.round(distanza_decimal);
+          console.log(distanza); //aggiungo a ogni appartamento la sua distanza dal punto di coordinate note
+
+          collection[key].distance = distanza;
+          var dist = collection[key].distance;
+          console.log(collection); //ora c e un if in cui se ho definito il raggio stampo solo gli appartamenti a distanza inferiore al raggio,
+          //se invece l ho definito, allora stampo normalmente.
+
+          if (raggio > 0) {
+            console.log(raggio);
+
+            if (distanza <= raggio) {
+              handlebars_print_collection(collection[key]);
+            }
+          } else {
+            handlebars_print_collection(collection[key]);
+          }
+        } //Riordino by distanza--
+
+
+        $('.appa_filtered .contenitore_appa').sort(sort_li) // sort elements
+        .appendTo('.appa_filtered'); // append again to the list
+        // sort function callback
+
+        function sort_li(a, b) {
+          return $(a).attr("dist") > $(b).attr("dist") ? 1 : -1;
+        } //-------
+
+      },
+      error: function error() {
+        console.log('KOKOKOKOKO');
+      }
+    });
   });
 });
 
