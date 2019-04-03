@@ -22,18 +22,11 @@
                             placeholder="Enter the address">
                     </div>
 
-                    <div class="form-group">
-                        <label class="" for="insert_lat">Insert latitude</label>
-                        <input type="number" name="insert_lat" class="form-control " id="insert_lat"
-                            placeholder="insert your lat">
-                        <label class="" for="insert_lng">Insert longitude</label>
-                        <input type="number" name="insert_lng" class="form-control " id="insert_lng"
-                            placeholder="insert your lng">
-                    </div>
+
 
                     {{-- //geocomplete --}}
                     <div id="my_map_search" style="width: 100%; height: 200px;"></div>
-                    <div class="details_search">
+                    <div class="details_search hidden">
                         <label class="" for="lat">Map latitude</label>
                         <input type="number" name="lat" class="form-control " id="latitude_search"
                             placeholder="map lat">
@@ -47,6 +40,25 @@
                 Country Code: <div data-geo="country_short"></div> --}}
                     </div>
                     {{-- --- --}}
+
+
+                    <div class="form-group">
+                        <label for="your_address">Dove ti trovi?</label>
+                        <input type="text" name="your_address" class="form-control" id="srcyourAddress"
+                            placeholder="Enter your current position">
+                    </div>
+
+                    <div class="form-group hidden">
+                        <label class="" for="insert_lat">Insert latitude</label>
+                        <input type="number" name="insert_lat" class="form-control " id="insert_lat"
+                            placeholder="insert your lat">
+                        <label class="" for="insert_lng">Insert longitude</label>
+                        <input type="number" name="insert_lng" class="form-control " id="insert_lng"
+                            placeholder="insert your lng">
+                    </div>
+
+
+
                     <div class="form-group">
                         <label for="">Numero di stanze</label>
                         <input type="number" name="rooms_number"
@@ -129,27 +141,74 @@
     </div>
 </div>
 
-
-
-
-
-<div class="container appa_all">
+{{-- appartamenti in evidenza --}}
+<div class="container evidenza">
     <div class="row">
         <div class="col-12-md">
-            <h3>Appartamenti disponibili con una modifica</h3>
+            <h3>Appartamenti in evidenza</h3>
         </div>
     </div>
-    <div class="row">
-        @foreach ($apartments as $item)
-        <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
-            <div class="card">
+    <div class="row appa_evidenza">
+ @foreach ($apartments as $item)
+ @if ($item->sponsor == 1)
+
+ <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}} carta_app">
+        <div class="card">
+                <h5 class="card-title identificativo_app_welcome">{{$item->id}}</h5>
                 @if (strpos( $item->image, 'https') !== false)
                 <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
                 @else
                 <img src="{{ asset('storage/' . $item->image) }}" alt="">
                 @endif
                 <div class="card-body">
-                    <h5 class="card-title"> {{ $item->description }} </h5>
+
+                    <h5 class="card-title desc"> {{ $item->description }} </h5>
+                    <p class="card-text">{{ $item->address }}</p>
+                    <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
+
+                    <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
+                </div>
+            </div>
+        </div>
+        @endif
+        @endforeach
+
+    </div>
+</div>
+
+{{-- container per template handlebars --}}
+<div class="container filtered hidden">
+    <div class="row">
+        <div class="col-12-md">
+            <h3>Appartamenti filtrati</h3>
+        </div>
+    </div>
+    <div class="row appa_filtered">
+
+    </div>
+</div>
+
+
+
+<div class="container appa_all">
+    <div class="row">
+        <div class="col-12-md">
+            <h3>Tutti gli appartamenti</h3>
+        </div>
+    </div>
+    <div class="row">
+        @foreach ($apartments as $item)
+        <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}} carta_app">
+            <div class="card">
+                <h5 class="card-title identificativo_app_welcome">{{$item->id}}</h5>
+                @if (strpos( $item->image, 'https') !== false)
+                <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+                @else
+                <img src="{{ asset('storage/' . $item->image) }}" alt="">
+                @endif
+                <div class="card-body">
+
+                    <h5 class="card-title desc"> {{ $item->description }} </h5>
                     <p class="card-text">{{ $item->address }}</p>
                     <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
 
@@ -160,21 +219,9 @@
         @endforeach
     </div>
 </div>
-</div>
-
-{{-- container per template handlebars --}}
-<div class="container ">
-    <div class="row">
-        <div class="col-12-md">
-            <h3>Appartamenti disponibili con una modifica</h3>
-        </div>
-    </div>
-    <div class="row appa_filtered">
 
 
-    </div>
-</div>
-</div>
+
 
 
 {{-- template handlebars --}}

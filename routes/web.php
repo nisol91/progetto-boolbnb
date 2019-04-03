@@ -29,3 +29,12 @@ Route::resource('/message', 'MessageController');
 
 //autocomplete
 Route::get('ajaxRequestAuto', 'HomeController@autocomplete');
+
+
+//pagamento
+Route::get('/payment', 'PaymentController@index')->name('payment.index');
+
+Route::get('/payment/process', 'PaymentController@process')->name('payment.process');
+
+Route::post('passToWelcome', 'PaymentController@ajaxRequestPay');
+

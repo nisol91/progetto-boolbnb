@@ -63,6 +63,7 @@
                                             <input class="btn btn-danger" type="submit" value="Delete">
                                         </form></td>
                                         <td><div class=" {{( $item->visibility == 1 ) ? null : 'hidden'}}"> <h6>Hidden</h6> </div></td>
+                                    <td><a href="{{ route('payment.index', $item->id) }}" class="btn btn-primary">Sponsor</a></td>
 
                                 </tr>
                             @endforeach

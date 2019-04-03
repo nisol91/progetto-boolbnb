@@ -74282,7 +74282,24 @@ $(document).ready(function () {
   var latitudines = $('#det_lat').text();
   var longitudines = $('#det_lng').text();
   console.log(latitudines);
-  console.log(longitudines); //terzo geocomplete per la detail page pubblica
+  console.log(longitudines); //terzo geocomplete per il form di ricerca (dove ti trovi tu)
+
+  $("#srcyourAddress").geocomplete({
+    // map: "#my_map_search",
+    details: ".details_search",
+    detailsAttribute: "data-geo"
+  }).bind("geocode:result", function (event, result) {
+    var latitude_search = result['geometry']['location'].lat();
+    var longitude_search = result['geometry']['location'].lng(); // console.log(latitude);
+    // console.log(longitude);
+
+    $("#insert_lat").val(latitude_search);
+    $("#insert_lng").val(longitude_search);
+  }); // var latitudines = $('#det_lat').text();
+  // var longitudines = $('#det_lng').text();
+  // console.log(latitudines);
+  // console.log(longitudines);
+  //quarto geocomplete per la detail page pubblica
 
   $("#detailsAddress").geocomplete({
     map: "#my_map_details",
@@ -74299,8 +74316,8 @@ $(document).ready(function () {
   }); //ricerca welcome page
 
   $('#cercaBtn').on('click', function () {
-    //inizio nascondendo tutte le card
-    $('.appa_all').hide(); //nascondo anche le card di un eventuale ricerca precedente
+    //inizio mostrando il container degli appa filtrati
+    $('.filtered').show(); //nascondo anche le card di un eventuale ricerca precedente
 
     $('.appa_filtered').find('.card').remove(); //prendo le variabili dal form
 
@@ -74366,14 +74383,18 @@ $(document).ready(function () {
 
           var elem = "".concat(key);
           console.log([collection[key].lat, collection[key].lng, insert_lat, insert_lng]);
-          var distanza_decimal = measure(collection[key].lat, collection[key].lng, insert_lat, insert_lng);
-          var distanza = Math.round(distanza_decimal);
-          console.log(distanza); //aggiungo a ogni appartamento la sua distanza dal punto di coordinate note
 
-          collection[key].distance = distanza;
-          var dist = collection[key].distance;
-          console.log(collection); //ora c e un if in cui se ho definito il raggio stampo solo gli appartamenti a distanza inferiore al raggio,
+          if (insert_lat != 0) {
+            var distanza_decimal = measure(collection[key].lat, collection[key].lng, insert_lat, insert_lng);
+            var distanza = Math.round(distanza_decimal);
+            console.log(distanza); //aggiungo a ogni appartamento la sua distanza dal punto di coordinate note
+
+            collection[key].distance = distanza;
+            var dist = collection[key].distance;
+            console.log(collection);
+          } //ora c e un if in cui se ho definito il raggio stampo solo gli appartamenti a distanza inferiore al raggio,
           //se invece l ho definito, allora stampo normalmente.
+
 
           if (raggio > 0) {
             console.log(raggio);
@@ -74491,8 +74512,8 @@ $(document).ready(function () {
   }); //######filtro selezionando i checkbox
 
   $('.chkServices').on('click', function () {
-    //inizio nascondendo tutte le card
-    $('.appa_all').hide(); //nascondo anche le card di un eventuale ricerca precedente
+    //inizio mostrando il container degli appa filtrati
+    $('.filtered').show(); //nascondo anche le card di un eventuale ricerca precedente
 
     $('.appa_filtered').find('.card').remove(); //prendo le variabili dal form
 
