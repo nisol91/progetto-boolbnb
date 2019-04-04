@@ -15,6 +15,15 @@ import Handlebars from 'handlebars/dist/cjs/handlebars.js'
 $(document).ready(function () {
 
 
+
+    if($('.sponsor').length > 0) {
+        $(".evidenza").show();
+    }
+    //per mostrare i servizi
+    $('#cercaServices').click(function (e) {
+        $('.servizi').slideToggle()
+
+});
     //primo geocomplete per create/edit
 
     $("#indirizzo").geocomplete({
@@ -32,8 +41,10 @@ $(document).ready(function () {
         $("#longitude").val(longitude);
 
     });
-
-
+    $("#my_map_search").hide();
+    $('#srcAddress').keypress(function (e) {
+        $("#my_map_search").show();
+    });
     //secondo geocomplete per il form di ricerca
     $("#srcAddress").geocomplete({
         map: "#my_map_search",
@@ -54,6 +65,9 @@ $(document).ready(function () {
     var longitudines = $('#det_lng').text();
     console.log(latitudines);
     console.log(longitudines);
+
+
+
 
     //terzo geocomplete per il form di ricerca (dove ti trovi tu)
     $("#srcyourAddress").geocomplete({
@@ -102,11 +116,11 @@ $(document).ready(function () {
     $('#cercaBtn').on('click', function () {
 
 
-         //inizio mostrando il container degli appa filtrati
-         $('.filtered').show();
+        //inizio mostrando il container degli appa filtrati
+        $('.filtered').show();
 
         //nascondo anche le card di un eventuale ricerca precedente
-        $('.appa_filtered').find('.card').remove();
+        $('.appa_filtered').find('.contenitore_appa').remove();
 
 
 
@@ -125,14 +139,18 @@ $(document).ready(function () {
 
         var services = [];
 
+        var controllo = [];
         $(".chkServices").each(function () {
             var ischecked = $(this).is(":checked");
             if (ischecked) {
                 services.push($(this).val());
-
+                controllo.push(ischecked)
             }
 
         });
+        // if (controllo.length == 0) {
+        //     $('.filtered').hide();
+        // }
 
 
         // console.log(services);
@@ -290,6 +308,9 @@ $(document).ready(function () {
 
     //grafici visite
 
+    if ($('#my_chart').length > 0) {
+
+
     var ascissa = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     var visite_gen = $('#visite_gen').val();
@@ -328,6 +349,7 @@ $(document).ready(function () {
 
     });
 
+    }
 
 
 
@@ -371,7 +393,7 @@ $(document).ready(function () {
         $('.filtered').show();
 
         //nascondo anche le card di un eventuale ricerca precedente
-        $('.appa_filtered').find('.card').remove();
+        $('.appa_filtered').find('.contenitore_appa').remove();
 
 
 
@@ -390,14 +412,18 @@ $(document).ready(function () {
 
         var services = [];
 
+        var controllo = [];
         $(".chkServices").each(function () {
             var ischecked = $(this).is(":checked");
             if (ischecked) {
                 services.push($(this).val());
-
+                controllo.push(ischecked)
             }
 
         });
+        if (controllo.length == 0) {
+            $('.filtered').hide();
+        }
 
 
         // console.log(services);

@@ -1,20 +1,80 @@
 .img-wrapper {
-    width: 100vw;
+    width: 100%;
     height: auto;
-    border: 1px solid black;
+    background-image: url('https://hdqwalls.com/download/crater-lake-oregon-ty-2560x1440.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 100px;
+    // margin: 100px;
 
-    .img {
+    img {
         width: 100%;
         height: 100%;
     }
 }
 
+.navbar {
+    color: black !important;
+}
+
+.pb-4,
+.py-4 {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+
+}
+
 .search_wrapper {
     width: 100%;
-    height: 100%;
-    border: 1px solid black;
+    height: auto;
     background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     border-radius: 5px;
+    padding: 20px;
+    #cercaServices {
+        background: #dd9094;
+        border-color: transparent;
+        color: black;
+        margin-bottom: 10px;
+    }
+    button {
+        background: #fd5c63;
+        border-color: #fd5c63;
+        width: 100%;
+        &:hover {
+            background: darken(#fd5c63, 30%);
+            border-color: #fd5c63;
+        }
+    }
+    #my_map_search {
+        border-radius: 5px;
+        width: 100%;
+        height: 300px!important;
+        margin: 10px 0;
+    }
+    .up_form {
+        display: flex;
+
+        .app_address {
+            width: 50%;
+            margin: 10px;
+        }
+
+        .other_info {
+            width: 50%;
+            margin: 10px;
+        }
+    }
+
+    .down_form_services {
+
+        display: flex;
+        flex-wrap: wrap;
+
+        .servizi {
+            margin: 5px;
+        }
+    }
 
     .form-group {
         margin: 30px 0;
@@ -24,6 +84,112 @@
         }
     }
 }
+.evidenza {
+    margin-top: 50px;
+    .sponsor {
+        background: rgb(235, 235, 203) !important;
+    }
+    a {
+        background: #9c952f!important;
+        border-color: #9c952f !important;
+
+        &:hover {
+            background: darken(#9c952f, 30%) !important;
+        }
+    }
+}
+.filtered {
+    margin-top: 50px;
+
+}
+.prices {
+    font-weight: 800;
+}
+.titl {
+    background: rgb(231, 231, 231);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.appa_all {
+    margin-top: 50px;
+}
+.appa_all, .appa_filtered, .appa_evidenza {
+    .appa {
+        height: 450px!important;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        border-color: transparent;
+        .card-body {
+        }
+        img {
+            border-radius: 5px;
+            margin: auto;
+            width: 200px;
+            max-height: 150px;
+            max-width: 100%;
+
+        }
+        a {
+            background: #fd5c63;
+            border-color: #fd5c63;
+            &:hover {
+                background: darken(#fd5c63, 30%);
+            }
+        }
+    }
+}
+#reg_btn {
+    background: #fd5c63;
+    border-color: #fd5c63;
+
+    &:hover {
+        background: darken(#fd5c63, 30%);
+    }
+}
+.link-forgot-pw {
+    color: #fd5c63;
+}
+#log_btn {
+    background: #fd5c63;
+    border-color: #fd5c63;
+
+    &:hover {
+        background: darken(#fd5c63, 30%);
+    }
+}
+#reg_card {
+    height: 480px!important;
+}
+
+
+//nav
+.navbar {
+    height: 100px !important;
+}
+
+.navbar-brand {
+    img {
+        width: 80px;
+    }
+
+
+    i {
+        margin-top: 8px;
+        color: grey;
+        cursor: pointer;
+    }
+}
+
+.ml-auto,
+.nav-link {
+    color: grey !important;
+}
+
+
+
+
 
 
 // Footer
@@ -53,13 +219,68 @@
     }
 }
 
-.card  {
+.card {
     height: 350px !important;
     margin: 5px;
 }
+
 .hidden {
     display: none;
 }
+
 .messaggio {
     margin: 10px;
+}
+
+
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+    .search_wrapper {
+        width: 100%;
+        height: auto;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        padding: 20px;
+        .up_form {
+            display: block;
+            width: 100%;
+            .other_info, .app_address {
+                width: 100%;
+                margin: auto;
+            }
+        }
+    }
+    .img-wrapper {
+        padding: 20px;
+    }
+
+    .navbar {
+        height: 250px !important;
+    }
+    #navbarDropdown {
+        width: 20%;
+        float: right;
+    }
+    #reg_card {
+        height: 650px !important;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {
+
 }

@@ -1,0 +1,163 @@
+.details__title {
+
+    .col-md-12 {
+
+        h1 {
+            font-size: 35px;
+            color: lightgray;
+            margin-bottom: 20px;
+        }
+
+    }
+}
+.main_i {
+    margin-top: 50px;
+}
+.send_btn {
+    background: #fd5c63;
+    border-color: #fd5c63;
+    width: 100%;
+
+    &:hover {
+        background: darken(#fd5c63, 30%);
+        border-color: #fd5c63;
+    }
+}
+.details__image {
+    display: flex;
+    justify-content: center;
+    .col-md-12 {
+        display: flex;
+        justify-content: center;
+        img {
+            width: 500px;
+            height: 300px;
+            margin: auto;
+            border-radius: 2px;
+        }
+    }
+}
+
+.details__main__content {
+
+    h2 {
+        font-size: 30px;
+        color: lightgray;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            display: inline;
+            color: black;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+    }
+
+    p {
+        text-align: left;
+        margin-bottom: 100px;
+    }
+
+    .col-md-4 {
+
+        h5 {
+            color: lightgray;
+            font-size: 22px;
+        }
+
+    }
+}
+
+.details__location {
+    h2 {
+        font-size: 30px;
+        color: lightgray;
+        margin-bottom: 15px;
+    }
+
+    span {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+}
+
+.details__form {
+
+    h5 {
+        color: lightgray;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+}
+@media (max-width: 576px) {
+.lista_cose {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.details__image {
+
+
+    .col-md-12 {
+
+
+        img {
+            width: 400px;
+            height: 300px;
+            margin: auto;
+            border-radius: 2px;
+        }
+    }
+}
+}
+@media (max-width: 400px) {
+    .details__image {
+
+        height: auto;
+        .col-md-12 {
+
+
+            img {
+                width: 300px;
+                height: auto;
+                margin: auto;
+                border-radius: 2px;
+            }
+        }
+    }
+}
+@media (max-width: 330px) {
+    .details__main__content {
+        h2 {
+        font-size: 25px;
+        text-align: center;
+        }
+    }
+    .details__image {
+
+
+        .col-md-12 {
+
+
+            img {
+                width: 200px;
+                height: auto;
+                margin: auto;
+                border-radius: 2px;
+            }
+        }
+    }
+}

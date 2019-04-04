@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Rubik',
+    sans-serif;
 }
 
 #my_map {
@@ -20,7 +22,4 @@ img {
 }
 .flex {
     display: flex;
-}
-.sponsor {
-    background: yellow!important;
 }

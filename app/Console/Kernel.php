@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
                     $date = $apartment->app_date;
                     $adesso = Carbon::now();
                     $diff = $adesso->diffInSeconds($date);
-                    if ($diff > 500) {
+                    if ($diff > 100) {
                         $apartment->sponsor = 0;
                         $apartment->save();
                     }
