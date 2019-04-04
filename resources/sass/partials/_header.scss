@@ -1,0 +1,34 @@
+.navbar {
+  position: absolute;
+  top: 2px;
+  width: 100%;
+  height: 60px;
+  background: none;
+  color: white;
+
+}
+
+.container_nav {
+  width: 100%;
+  max-width: 5000px;
+  margin-right: 100px;
+  margin-left: 100px;
+  
+  a, i, span {
+    color: white;
+  }
+  a:hover {
+    border-bottom: 2px solid white;
+  }
+}
+li {
+  color: white;
+  a{
+    text-decoration-color: none;
+    font-weight: 800;
+  }
+  a:hover {
+    border-bottom:1px solid white;
+  }
+}
+

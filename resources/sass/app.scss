@@ -1,19 +1,29 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,500,700,800,900');
 
 // Variables
+
 @import 'variables';
 
 @import 'common';
+
 
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    background-color: none;
 }
+
 
 // Welcome Page
 @import '_welcome';
+
+@import 'partials/_header';
+
+@import 'partials/_jumbo';
+
+//Details
+@import 'partials/_details';

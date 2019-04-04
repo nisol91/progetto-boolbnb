@@ -1,11 +1,16 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-
-        <div class="row">
-            <div class="col-12">
-            <h1>Appartamento con id: {{ $apartment->id }}</h1>
-                <h1>Titolo:{{$apartment->description}}</h1>
+    <div class='jumbo_image'>
+            <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
+            <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+        </div>
+    <div class="container_backg container">
+        
+        <div class="margin_n row">
+            
+            <div class="col-12 description_n">
+            <h1 class="display_none">Appartamento con id: {{ $apartment->id }}</h1>
+                <h1>{{$apartment->description}}</h1>
                 <h5>Numero stanze:{{$apartment->rooms_number}}</h5>
                 <h5>Numero letti:{{$apartment->beds_number}}</h5>
                 <h5>Numero bagni:{{$apartment->baths_number}}</h5>
@@ -35,15 +40,14 @@
                 </div>
 
 
-                <h5>Services:</h5>
+                <h5>services plus:</h5>
                  @foreach ($apartment->services as $item)
                     <h5>{{$item->service}}</h5>
                 @endforeach
-                <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
-                <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
+                
             </div>
         </div>
-        <div class="row">
+        <div class="margin_n row">
             <form class="form-group" action="{{ route('message.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group hidden">
@@ -62,7 +66,7 @@
                     <label for="body">Example textarea</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body"></textarea>
                 </div>
-                <button class="btn btn-primary" type="submit" id="cercaBtn">Submit</button>
+                <button class="btn btn-danger" type="submit" id="cercaBtn">Submit</button>
             </form>
         </div>
     </div>

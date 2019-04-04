@@ -19,7 +19,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+    <link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700,800,900" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -34,10 +34,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <nav class="navbar navbar-expand-xl navbar-laravel">
+            <div class=" container_nav container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-home">BoolBnB</i>
                 </a>
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <i class="fas fa-columns"></i>
@@ -56,11 +56,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('LOGIN') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTER') }}</a>
                                 </li>
                             @endif
                         @else
@@ -87,7 +87,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container_main">
             @yield('content')
         </main>
     </div>

@@ -10,14 +10,14 @@
 
 
 <div class="img-wrapper">
-    <img class="img-responsive" src="" alt="">
-    <div class="container">
+    <img class="img-responsive" src="brook.jpg" alt="">
     <div class="row">
         <div class="col-md-5">
 
             <div class="search_wrapper">
                 <div class="form-group">
-                    <label for="address">Indirizzo</label>
+                  <h1>Prenota case ed esperienze uniche.</h1>
+                    <label for="address">DOVE</label>
                     <input type="text" name="address" class="form-control" id="srcAddress" placeholder="Enter the address">
                 </div>
 
@@ -37,7 +37,7 @@
                 </div>
 {{-- --- --}}
                 <div class="form-group">
-                    <label for="">Numero di stanze</label>
+                    <label for="">NUMERO DI STANZE</label>
                     <input type="number" name="rooms_number" placeholder="inserisci quante stanze dovrebbe avere il tuo appartamento" class="form-control" id="numStanze">
                 </div>
 
@@ -65,20 +65,24 @@
 
                 </div>
 
-                @foreach ($services as $service)
+                  <div class='form-group form-check'>
+                  <label for="">Che servizi vuoi avere ?</label>
+                  
                     <div class="servizi">
-                    <input type="checkbox" class="chkServices" name='{{ $service->service }}' value='{{ $service->service }}' id="servizi">
-                    <label>{{$service->service }}</label>
+                    @foreach ($services as $service)
+                      <input type="checkbox" class="chkServices" name='{{ $service->service }}' value='{{ $service->service }}' id="servizi">
+                      <label class="form-check-label">{{$service->service }}</label>
+                      @endforeach
                     </div>
-
-                @endforeach
-
-                    <button class="btn btn-primary" type="submit" id="cercaBtn">Cerca</button>
-                </div>
+                
+                  </div>
+                  <div class='form-group button'>
+                    <button class="btn btn-danger" type="submit" id="cercaBtn">Cerca</button>
+                  </div>
+              </div>
 
             </div>
         </div>
-    </div>
 </div>
 
 
@@ -88,13 +92,13 @@
 <div class="container">
   <div class=row>
     <div class="col-12-md">
-      <h3>Appartamenti disponibili con una modifica</h3>
+      <h3>APPARTAMENTI DISPONIBILI </h3>
     </div>
   </div>
   <div class="row">
   @foreach ($apartments as $item)
-      <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
-          <div class="card">
+      <div class="appart_card col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}}">
+          <div class="card_sov card">
               @if (strpos( $item->image, 'https') !== false)
                 <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
               @else
@@ -103,9 +107,9 @@
               <div class="card-body">
               <h5 class="card-title"> {{ $item->description }} </h5>
               <p class="card-text">{{ $item->address }}</p>
-              <p class="card-text">Prezzo per notte:{{ $item->price }} euro</p>
+              <p class="card-text">Prezzo per notte : {{ $item->price }} euro</p>
 
-              <a href="{{ route('details.public', $item->id) }}" class="btn btn-primary">Show</a>
+              <a href="{{ route('details.public', $item->id) }}" class="btn btn-danger">Show</a>
               </div>
           </div>
       </div>
