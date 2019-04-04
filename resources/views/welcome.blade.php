@@ -149,11 +149,11 @@
         </div>
     </div>
     <div class="row appa_evidenza">
- @foreach ($apartments as $item)
- @if ($item->sponsor == 1)
+@foreach ($apartments as $item)
+@if ($item->sponsor == 1 || $item->sponsor == 2 || $item->sponsor == 3)
 
  <div class="col-md-3 {{( $item->visibility == 1 ) ? 'hidden' : null}} carta_app">
-        <div class="card">
+        <div class="card sponsor">
                 <h5 class="card-title identificativo_app_welcome">{{$item->id}}</h5>
                 @if (strpos( $item->image, 'https') !== false)
                 <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">

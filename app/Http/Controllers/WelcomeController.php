@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Apartment;
 use App\Service;
+use Carbon\Carbon;
 
 class WelcomeController extends Controller
 {
@@ -18,7 +19,17 @@ class WelcomeController extends Controller
 
 
 //###########prove di consolelog#####################
-
+// $appi = $apartments->where('sponsor', 2);
+// foreach ($appi as $apartment) {
+//      $date = $apartment->app_date;
+//      $ora = Carbon::now();
+//     $diff = $ora->diffInSeconds($date);
+//     if ($diff > 24) {
+//         // dd('maggiore');
+//         $apartment->sponsor = 0;
+//         $apartment->save();
+//     }
+// }
 
 //         foreach ($apartments as $apartment) {
 //     # code...
