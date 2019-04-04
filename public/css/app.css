@@ -10814,7 +10814,7 @@ a.text-dark:focus {
 .appa_all .appa,
 .appa_filtered .appa,
 .appa_evidenza .appa {
-  height: 450px !important;
+  height: 400px !important;
   padding: 10px;
   margin: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -10928,7 +10928,17 @@ a.text-dark:focus {
   margin: 10px;
 }
 
+@media (max-width: 576px) {
+  #main_title {
+    font-size: 25px;
+  }
+}
+
 @media (max-width: 768px) {
+  footer * {
+    text-align: center;
+  }
+
   .search_wrapper {
     width: 100%;
     height: auto;

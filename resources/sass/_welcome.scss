@@ -116,7 +116,7 @@
 }
 .appa_all, .appa_filtered, .appa_evidenza {
     .appa {
-        height: 450px!important;
+        height: 400px!important;
         padding: 10px;
         margin: 10px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -239,11 +239,18 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) {
-
+#main_title {
+    font-size: 25px;
+}
 }
 
 // Medium devices (tablets, 768px and up)
 @media (max-width: 768px) {
+    footer {
+        * {
+            text-align: center;
+        }
+    }
     .search_wrapper {
         width: 100%;
         height: auto;

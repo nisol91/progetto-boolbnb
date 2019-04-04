@@ -16,7 +16,7 @@
             <div class="col-12">
 
                 <div class="search_wrapper">
-                    <h1>Prenota case ed esperienze uniche.</h1>
+                    <h1 id="main_title">Prenota case ed esperienze uniche.</h1>
                     <div class="up_form">
                         <div class="app_address">
 
