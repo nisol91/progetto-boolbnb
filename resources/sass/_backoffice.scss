@@ -1,7 +1,11 @@
 #table_container {
     height: auto !important;
 }
-
+.main_ii {
+    * {
+        text-align: center;
+    }
+}
 .table_media {
 
     display: none;
@@ -29,7 +33,7 @@ td {
 
 @media (max-width: 800px) {
 
-    .img_section {
+    .img_query_hidden {
         display: none;
     }
 

@@ -1,30 +1,35 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container main_ii">
         <div class="row">
-            <div class="col-12">
-            <h1>Appartamento con id: {{ $apartment->id }}</h1>
+            <div class="col-xs-12 col-lg-6">
+            {{-- <h1>Appartamento con id: {{ $apartment->id }}</h1> --}}
                 <h1>{{$apartment->description}}</h1>
-                <h5>{{$apartment->rooms_number}}</h5>
-                <h5>{{$apartment->beds_number}}</h5>
-                <h5>{{$apartment->baths_number}}</h5>
-                <h5>{{$apartment->surface}}</h5>
-                <h5>{{$apartment->address}}</h5>
-                <h5>Prezzo per notte:{{$apartment->price}}</h5>
+                <h5>Numero di stanze: {{$apartment->rooms_number}}</h5>
+                <h5>Numero di letti: {{$apartment->beds_number}}</h5>
+                <h5>Numero di bagni: {{$apartment->baths_number}}</h5>
+                <h5>Superficie: {{$apartment->surface}}</h5>
+                <h5>Indirizzo: {{$apartment->address}}</h5>
+                <h5>Prezzo per notte: {{$apartment->price}}</h5>
 
 
-                <h5>Services:</h5>
+                <h2>Servizi:</h2>
                 @foreach ($apartment->services as $item)
                     <h5>{{$item->service}}</h5>
                 @endforeach
+            </div>
+            <div class="col-xs-12 col-lg-6">
+                            <h2>Foto</h2>
+
                 {{-- <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt=""> --}}
                 @if (strpos( $apartment->image, 'https') !== false)
                 <img src="{{ $apartment->image }}" class="card-img-top img_section" alt="...">
-              @else
+                @else
                 <img src="{{ asset('storage/' . $apartment->image) }}" alt="">
-              @endif
+                @endif
             </div>
+
         </div>
         <div class="row">
 
@@ -41,6 +46,7 @@
             </div>
         </div>
         {{-- <h5>Numero visualizzazioni: {{$apartment->clicks_apr}}</h5> --}}
+                    <h2>Visualizzazioni per mese</h2>
 
             <input type="text" name="description" class="form-control hidden" id="visite_gen" placeholder="Enter description" value="{{$apartment->clicks_gen}}">
             <input type="text" name="description" class="form-control hidden" id="visite_feb" placeholder="Enter description" value="{{$apartment->clicks_feb}}">

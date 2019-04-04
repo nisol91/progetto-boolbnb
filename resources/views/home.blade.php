@@ -33,15 +33,15 @@
                             <tr>
                                 <th scope="col">Description</th>
                                 <th scope="col">Address</th>
-                                <th scope="col" class="img_section">Image</th>
-                                <th scope="col" class="img_section">Actions</th>
-                                <th scope="col" class="img_section"></th>
-                                <th scope="col" class="img_section"></th>
-                                <th scope="col" class="img_section"></th>
+                                <th scope="col" class="">Image</th>
+                                <th scope="col" class="">Actions</th>
+                                <th scope="col" class=""></th>
+                                <th scope="col" class=""></th>
+                                <th scope="col" class=""></th>
 
 
 
-                                <th scope="col" class="img_section">Visibility</th>
+                                <th scope="col" class="">Visibility</th>
 
                             </tr>
                         </thead>
@@ -59,10 +59,10 @@
                                     {{-- <td><img src="{{ $item->image }}" alt=""></td> --}}
                                     {{-- <td><img src="{{ asset('storage/' . $item->image) }}" alt=""></td> --}}
                                     @if (strpos( $item->image, 'https') !== false)
-                                    <td><img src="{{ $item->image }}" class="card-img-top img_section" alt="..."></td>
+                                    <td><img src="{{ $item->image }}" class="card-img-top img_section " alt="..."></td>
                                     @else
                                     <td><img src="{{ asset('storage/' . $item->image) }}"
-                                            class="card-img-top img_section" alt=""></td>
+                                            class="card-img-top img_section " alt=""></td>
                                     @endif
                                 </div>
 
@@ -108,7 +108,7 @@
                                     {{-- <img src="{{ $item->image }}" alt=""> --}}
                                     {{-- <img src="{{ asset('storage/' . $item->image) }}" alt=""> --}}
                                     @if (strpos( $item->image, 'https') !== false)
-                                    <img src="{{ $item->image }}" class="card-img-top img_section" alt="...">
+                                    <img src="{{ $item->image }}" class="card-img-top img_section " alt="...">
                                     @else
                                     <img src="{{ asset('storage/' . $item->image) }}"
                                             class="card-img-top img_section" alt="">
