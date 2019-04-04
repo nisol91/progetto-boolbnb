@@ -10960,6 +10960,7 @@ a.text-dark:focus {
   #navbarDropdown {
     width: 20%;
     float: right;
+    margin-right: 30%;
   }
 
   #reg_card {
@@ -11094,6 +11095,75 @@ a.text-dark:focus {
     height: auto;
     margin: auto;
     border-radius: 2px;
+  }
+}
+
+#table_container {
+  height: auto !important;
+}
+
+.table_media {
+  display: none;
+}
+
+.create_edit_btn {
+  margin-top: 50px;
+  width: 100%;
+  background: #fd5c63;
+  border-color: #fd5c63;
+}
+
+.create_edit_btn:hover {
+  background: #be020a;
+}
+
+td {
+  height: 150px;
+}
+
+td img {
+  max-width: 200px;
+}
+
+.form_indirizzo {
+  width: auto;
+}
+
+@media (max-width: 800px) {
+  .img_section {
+    display: none;
+  }
+
+  td {
+    height: 150px;
+    width: 20px;
+  }
+
+  td img {
+    max-width: 200px;
+  }
+
+  .table {
+    display: none;
+  }
+
+  .table_media {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .table_media form input {
+    width: 100%;
+  }
+
+  .table_media .desc_img h4 {
+    text-align: center;
+    margin-top: 20px;
+    padding: 5px 0;
+  }
+
+  .table_media .desc_img #h4_i {
+    border-top: 2px solid lightgrey;
   }
 }
 

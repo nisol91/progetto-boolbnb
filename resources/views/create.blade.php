@@ -51,7 +51,7 @@
                         <label for="surface">Surface [square meters]</label>
                         <input type="number" name="surface" class="form-control" id="" placeholder="Enter the surface">
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group form_indirizzo">
                         <label for="address">Address</label>
                         <input type="text" name="address" class="form-control" id="indirizzo" placeholder="Enter the address">
                         <div id="my_map"></div>
@@ -82,7 +82,7 @@
                             </div>
                             @endforeach
                     <div class="form-group">
-                        <input class="btn btn-primary" type="submit" value="Create new apartment">
+                        <input class="btn btn-primary create_edit_btn" type="submit" value="Create new apartment">
                     </div>
                 </form>
             </div>

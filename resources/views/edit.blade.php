@@ -97,7 +97,7 @@
                             </div>
                             @endforeach
                     <div class="form-group">
-                        <input class="btn btn-primary" type="submit" value="Update new apartment">
+                        <input class="btn btn-primary create_edit_btn" type="submit" value="Update new apartment">
                     </div>
                 </form>
             </div>
